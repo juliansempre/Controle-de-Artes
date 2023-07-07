@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="506.0" prefWidth="764.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aerocopias.controledeartes.controller.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <AnchorPane prefHeight="14.0" prefWidth="724.0">
+      <children>
+         <Label layoutX="296.0" layoutY="15.0" text="Artes Aroeira">
+            <font>
+               <Font size="23.0" />
+            </font>
+         </Label>
+         <ImageView fitHeight="67.0" fitWidth="95.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../../../img/logojp.jpg" />
+            </image>
+         </ImageView>
+      </children>
+   </AnchorPane>
+   <MenuBar>
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Close" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Delete" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+ <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="83.0" prefWidth="724.0">
+      <children>
+         <TextField fx:id="txtArte" layoutX="14.0" layoutY="30.0" />
+         <TextField fx:id="txtLink" layoutX="173.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0" />
+         <TextField fx:id="txtData" layoutX="324.0" layoutY="30.0" />
+         <TextField fx:id="txtStatus" layoutX="483.0" layoutY="30.0" />
+         <Button layoutX="638.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnSalvarClick" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
+         <Label layoutX="20.0" layoutY="6.0" text="Arte" />
+         <Label layoutX="173.0" layoutY="6.0" text="Link do email" />
+         <Label layoutX="324.0" layoutY="6.0" text="Data" />
+         <Label layoutX="483.0" layoutY="6.0" text="Status" />
+         <Button layoutX="638.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnAtualizarClick" prefHeight="25.0" prefWidth="80.0" text="Atualizar" />
+         <TextField fx:id="txtId" editable="false" layoutX="561.0" layoutY="62.0" prefHeight="25.0" prefWidth="71.0" />
+         <Label layoutX="486.0" layoutY="66.0" text="Código" />
+      </children>
+ </AnchorPane>
+
+
+    <AnchorPane prefHeight="243.0" prefWidth="724.0">
+        <children>
+            <ScrollPane layoutX="12.0" layoutY="96.0" prefHeight="200.0" prefWidth="700.0">
+                <content>
+                    <GridPane fx:id="container" hgap="10.0" style="-fx-background-color: white;-fx-font-size: 14px;" vgap="10.0" />
+                </content>
+            </ScrollPane>
+         <Button layoutX="175.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnBuscarei" prefHeight="25.0" prefWidth="87.0" text="Procurar arte" />
+         <TextField fx:id="txtBuscarei" layoutX="14.0" layoutY="62.0" />
+         <Label layoutX="12.0" layoutY="39.0" text="Digite o código para procurar a arte" />
+        </children>
+    </AnchorPane>
+    <Button onAction="#onHelloButtonClick" text="Limpar" />
+   <AnchorPane prefHeight="39.0" prefWidth="724.0" />
+
+
+
+    <Label fx:id="welcomeText" />
+</VBox>

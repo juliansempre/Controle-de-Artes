@@ -1,0 +1,16 @@
+CREATE DATABASE controledeartes;
+USE controledeartes;
+
+CREATE TABLE artesaroeira (
+id INT AUTO_INCREMENT PRIMARY KEY,
+artes VARCHAR(255),
+link VARCHAR(255),
+data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+status VARCHAR(20)
+);
+
+INSERT INTO artesaroeira (artes, link, data, status)
+VALUES ('arte 01', 'http://www.google.com', '06/07/2023', 'Fazendo');
+
+ALTER TABLE artesaroeira
+ADD COLUMN data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
