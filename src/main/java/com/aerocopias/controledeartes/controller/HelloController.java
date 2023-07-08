@@ -1,5 +1,9 @@
 package com.aerocopias.controledeartes.controller;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import com.aerocopias.controledeartes.model.AroeiraModel;
@@ -14,15 +18,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
+
 
 import javax.swing.*;
-import java.awt.*;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -95,6 +96,13 @@ public class HelloController implements Initializable {
         container.getChildren().clear();
         listarProntos();
     }
+    public void btnlistarAprovados(ActionEvent actionEvent) {
+        container.getChildren().clear();
+        listarAprovados();
+    }
+    public void btnlistarParaFazer(ActionEvent actionEvent) {
+        limparFormulario();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -125,6 +133,9 @@ public class HelloController implements Initializable {
                 if (status.equalsIgnoreCase("PRONTO")) {
                     listaArtesaroeira.remove(artesaroeira);
                 }
+                if (status.equalsIgnoreCase("APROVADO")) {
+                    listaArtesaroeira.remove(artesaroeira);
+                }
 
             }
 
@@ -146,7 +157,7 @@ public class HelloController implements Initializable {
             // System.out.println(a[0] + " " + a[1] + " " + a[2] + " " + a[3] + " " + a[4]);
 
             // Criar novos Labels para cada item da lista
-            Label label1 = new Label(a[0]);
+            Label label1 = new Label( " ( "+ a[0] + " ) ");
             Label label2 = new Label(a[1]);
             Label label3 = new Label(a[2]);
             Label label4 = new Label(a[3]);
@@ -163,6 +174,10 @@ public class HelloController implements Initializable {
             }
             else if(a[4].equalsIgnoreCase("Pronto")){
                 label5.setTextFill(javafx.scene.paint.Color.GREEN);
+                label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            }
+            else if(a[4].equalsIgnoreCase("Aprovado")){
+                label5.setTextFill(javafx.scene.paint.Color.DARKBLUE);
                 label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
             }
 
@@ -225,7 +240,8 @@ public class HelloController implements Initializable {
             }
 
             });
-            container.add(button2, col + 6, row);
+            //Desativando botão deletar
+           // container.add(button2, col + 6, row);
 
             // Atualizar as posições de linha e coluna
             //row++;
@@ -260,12 +276,12 @@ public class HelloController implements Initializable {
 
         AroeiraModel aroeiraModel = new AroeiraModel();
         try {
-            if (status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
+            if (status.equalsIgnoreCase("APROVADO") || status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
                 aroeiraModel.inserirDados(aroeiraController.getArtes(), aroeiraController.getLink(), aroeiraController.getData(), aroeiraController.getStatus());
                 limparFormulario();
             }
            else {
-                JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, ALTERAÇAO OU PRONTO!");
+                JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, APROVADO, ALTERAÇAO OU PRONTO!");
             }
         } catch (SQLException e) {
             // Tratar a exceção aqui
@@ -305,7 +321,7 @@ public class HelloController implements Initializable {
         int row = 0;
         int col = 0;
         for (String[] a : listaArtesaroeira) {
-            Label label1 = new Label(a[0]);
+            Label label1 = new Label( " ( "+ a[0] + " ) ");
             Label label2 = new Label(a[1]);
             Label label3 = new Label(a[2]);
             Label label4 = new Label(a[3]);
@@ -359,7 +375,8 @@ public class HelloController implements Initializable {
                     // Tratar a exceção aqui
                 }
             });
-            container.add(button2, col + 6, row);
+            //Desativando botão deletar
+          //  container.add(button2, col + 6, row);
 
             if (col + 7 >= 7) {
                 col = 0;
@@ -403,7 +420,7 @@ public class HelloController implements Initializable {
         int row = 0;
         int col = 0;
         for (String[] a : listaArtesaroeira) {
-            Label label1 = new Label(a[0]);
+            Label label1 = new Label( " ( "+ a[0] + " ) ");
             Label label2 = new Label(a[1]);
             Label label3 = new Label(a[2]);
             Label label4 = new Label(a[3]);
@@ -420,6 +437,10 @@ public class HelloController implements Initializable {
             }
             else if(a[4].equalsIgnoreCase("Pronto")){
                 label5.setTextFill(javafx.scene.paint.Color.GREEN);
+                label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            }
+            else if(a[4].equalsIgnoreCase("Aprovado")){
+                label5.setTextFill(javafx.scene.paint.Color.DARKBLUE);
                 label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
             }
 
@@ -471,7 +492,8 @@ public class HelloController implements Initializable {
                     // Tratar a exceção aqui
                 }
             });
-            container.add(button2, col + 6, row);
+            //Desativando botão deletar
+            //container.add(button2, col + 6, row);
 
             if (col + 7 >= 7) {
                 col = 0;
@@ -512,7 +534,7 @@ public void listarProntos() {
     int row = 0;
     int col = 0;
     for (String[] a : listaArtesaroeira) {
-        Label label1 = new Label(a[0]);
+        Label label1 = new Label( " ( "+ a[0] + " ) ");
         Label label2 = new Label(a[1]);
         Label label3 = new Label(a[2]);
         Label label4 = new Label(a[3]);
@@ -529,6 +551,10 @@ public void listarProntos() {
         }
         else if(a[4].equalsIgnoreCase("Pronto")){
             label5.setTextFill(javafx.scene.paint.Color.GREEN);
+            label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        }
+        else if(a[4].equalsIgnoreCase("Aprovado")){
+            label5.setTextFill(javafx.scene.paint.Color.DARKBLUE);
             label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         }
 
@@ -581,7 +607,8 @@ public void listarProntos() {
                 // Tratar a exceção aqui
             }
         });
-        container.add(button2, col + 6, row);
+        //Desativando botão deletar
+        //container.add(button2, col + 6, row);
 
         if (col + 7 >= 7) {
             col = 0;
@@ -591,7 +618,122 @@ public void listarProntos() {
         }
     }
 }
+//Aprovados
 
+    public void listarAprovados() {
+        ArrayList<String[]> listaArtesaroeira = new ArrayList<>();
+
+        try {
+            Connection connection = ConectaDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE status = ?");
+            statement.setString(1, "APROVADO");
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String nome = resultSet.getString("artes");
+                String link = resultSet.getString("link");
+                String data = resultSet.getString("data");
+                String status = resultSet.getString("status");
+
+                String[] artesaroeira = {id, nome, link, data, status};
+                listaArtesaroeira.add(artesaroeira);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        int row = 0;
+        int col = 0;
+        for (String[] a : listaArtesaroeira) {
+            Label label1 = new Label( " ( "+ a[0] + " ) ");
+            Label label2 = new Label(a[1]);
+            Label label3 = new Label(a[2]);
+            Label label4 = new Label(a[3]);
+            Label label5 = new Label(a[4]);
+
+            //Mudar de cor
+            if(a[4].equalsIgnoreCase("Para fazer")){
+                label5.setTextFill(javafx.scene.paint.Color.BLUE);
+                label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            }
+            else if(a[4].equalsIgnoreCase("Alteração")){
+                label5.setTextFill(javafx.scene.paint.Color.RED);
+                label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            }
+            else if(a[4].equalsIgnoreCase("Pronto")){
+                label5.setTextFill(javafx.scene.paint.Color.GREEN);
+                label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            }
+            else if(a[4].equalsIgnoreCase("aprovado")){
+                label5.setTextFill(javafx.scene.paint.Color.DARKBLUE);
+                label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            }
+
+
+            container.add(label1, col, row);
+            container.add(label2, col + 1, row);
+            container.add(label4, col + 3, row);
+            container.add(label5, col + 4, row);
+
+            Button buttonlink = new Button("Abrir link do email");
+            buttonlink.setUserData(a[0]);
+
+            buttonlink.setOnAction(event -> {
+                String linkAtual = a[2];
+                AroeiraModel.AbrirWebLink(linkAtual);
+            });
+            container.add(buttonlink, col + 2, row);
+
+            Button button = new Button("Alterar");
+            button.setUserData(a[0]);
+
+            button.setOnAction(event -> {
+                String idAtual = (String) button.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+                String statusAtual = a[4];
+
+                txtId.setText(idAtual);
+                txtArte.setText(arteAtual);
+                txtLink.setText(linkAtual);
+                txtData.setText(dataAtual);
+                txtStatus.setText(statusAtual);
+            });
+            container.add(button, col + 5, row);
+
+            Button button2 = new Button("Deletar");
+            button2.setUserData(a[0]);
+
+            button2.setOnAction(event -> {
+                String idAtual = (String) button2.getUserData();
+
+                try {
+                    AroeiraModel aroeiraModel = new AroeiraModel();
+                    aroeiraModel.deletarDados(Integer.parseInt(idAtual));
+
+                    container.getChildren().clear();
+                    listarAlteracoes();
+                } catch (SQLException e) {
+                    // Tratar a exceção aqui
+                }
+            });
+           // botão deletar
+            container.add(button2, col + 6, row);
+
+            if (col + 7 >= 7) {
+                col = 0;
+                row++;
+            } else {
+                col += 7;
+            }
+        }
+    }
     public void enviarAtualizar(){
         String id = txtId.getText();
         String nome = txtArte.getText();
@@ -610,12 +752,12 @@ public void listarProntos() {
 
         AroeiraModel aroeiraModel = new AroeiraModel();
         try {
-            if (status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
+            if (status.equalsIgnoreCase("APROVADO") || status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
                 aroeiraModel.atualizarDados(aroeiraController.getId(), aroeiraController.getArtes(), aroeiraController.getLink(), aroeiraController.getData(), aroeiraController.getStatus());
                 limparFormulario();
             }
             else {
-                JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, ALTERAÇÃO OU PRONTO!");
+                JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, APROVADO, ALTERAÇÃO OU PRONTO!");
             }
 
         } catch (SQLException e) {
@@ -678,7 +820,6 @@ public void listarProntos() {
         }
 
     }
-
 
 }
 
