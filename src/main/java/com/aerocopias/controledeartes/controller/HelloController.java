@@ -64,9 +64,6 @@ public class HelloController implements Initializable {
     private TableColumn<String[], String> colStatus;
     private boolean pararFuncao = false;
 
-
-
-
     @FXML
     protected void onHelloButtonClick() {
         limparFormulario();
@@ -337,13 +334,22 @@ public class HelloController implements Initializable {
 
         AroeiraModel aroeiraModel = new AroeiraModel();
         try {
-            if (status.equalsIgnoreCase("APROVADO") || status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
-                aroeiraModel.inserirDados(aroeiraController.getArtes(), aroeiraController.getLink(), aroeiraController.getData(), aroeiraController.getStatus());
-                limparFormulario();
-            }
-           else {
-                JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, APROVADO, ALTERAÇAO OU PRONTO!");
-            }
+            //Validação
+           if(nome.isEmpty() || link.isEmpty() || data.isEmpty() || status.isEmpty()){
+               JOptionPane.showMessageDialog(null, "Preencha os campos!");
+           }else {
+               if(data.matches("\\d{2}/\\d{2}/\\d{4}") ){
+                   if (status.equalsIgnoreCase("APROVADO") || status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
+                       aroeiraModel.inserirDados(aroeiraController.getArtes(), aroeiraController.getLink(), aroeiraController.getData(), aroeiraController.getStatus());
+                       limparFormulario();
+                   }
+                   else {
+                       JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, APROVADO, ALTERAÇAO OU PRONTO!");
+                   }
+               }else {
+                   JOptionPane.showMessageDialog(null, "O Formato da data está errado\n O correto é: 00/00/0000");
+               }
+           }
         } catch (SQLException e) {
             // Tratar a exceção aqui
             e.printStackTrace();
@@ -1046,13 +1052,21 @@ public void listarProntos() {
 
         AroeiraModel aroeiraModel = new AroeiraModel();
         try {
-            if (status.equalsIgnoreCase("APROVADO") || status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
-                aroeiraModel.atualizarDados(aroeiraController.getId(), aroeiraController.getArtes(), aroeiraController.getLink(), aroeiraController.getData(), aroeiraController.getStatus());
-                limparFormulario();
+        if(nome.isEmpty() || link.isEmpty() || data.isEmpty() || status.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha os campos para atualizar!");
+        }else{
+            if(data.matches("\\d{2}/\\d{2}/\\d{4}")){
+                if (status.equalsIgnoreCase("APROVADO") || status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
+                    aroeiraModel.atualizarDados(aroeiraController.getId(), aroeiraController.getArtes(), aroeiraController.getLink(), aroeiraController.getData(), aroeiraController.getStatus());
+                    limparFormulario();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, APROVADO, ALTERAÇÃO OU PRONTO!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "O Formato da data está errado\n O correto é: 00/00/0000");
             }
-            else {
-                JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, APROVADO, ALTERAÇÃO OU PRONTO!");
-            }
+        }
 
         } catch (SQLException e) {
             // Tratar a exceção aqui
@@ -1188,9 +1202,11 @@ public void listarProntos() {
         System.out.println(dataFormatada);
 
         container.getChildren().clear();
-        buscarPorData(dataFormatada);
 
+        buscarPorData(dataFormatada);
         dtData.setValue(null);
+
+
         JOptionPane.showMessageDialog(null, "Aqui estão as artes do dia:\n" + dataFormatada);
     }
     public void buscarPorData(String datando) {
