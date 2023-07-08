@@ -1,9 +1,13 @@
 package com.aerocopias.controledeartes.controller;
 
+import com.aerocopias.controledeartes.HelloApplication;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import com.aerocopias.controledeartes.model.AroeiraModel;
@@ -13,12 +17,11 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.GridPane;
 
 
@@ -109,7 +112,6 @@ public class HelloController implements Initializable {
       listar();
 
     }
-
     public void listar(){
         ArrayList<String[]> listaArtesaroeira = new ArrayList<>();
         ArrayList<String[]> listaAlteracao = new ArrayList<>();
@@ -417,6 +419,65 @@ public class HelloController implements Initializable {
                 txtStatus.setText(statusAtual);
             });
             container.add(button, col + 5, row);
+
+
+
+            Button buttonAlt = new Button("Alteração");
+            buttonAlt.setUserData(a[0]);
+            buttonAlt.setStyle("-fx-background-color: orange; -fx-text-fill: white;");
+
+            buttonAlt.setOnAction(event -> {
+                String idAtual = (String) buttonAlt.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"alteração");
+            });
+            container.add(buttonAlt, col + 7, row);
+
+            Button buttonAp = new Button("Aprovado");
+            buttonAp.setUserData(a[0]);
+            buttonAp.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonAp.setOnAction(event -> {
+                String idAtual = (String) buttonAp.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"APROVADO");
+            });
+            container.add(buttonAp, col + 8, row);
+
+            Button buttonPr = new Button("Pronto");
+            buttonPr.setUserData(a[0]);
+            buttonPr.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+
+            buttonPr.setOnAction(event -> {
+                String idAtual = (String) buttonPr.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PRONTO");
+            });
+            container.add(buttonPr, col + 9, row);
+
+            Button buttonpf = new Button("Para fazer");
+            buttonpf.setUserData(a[0]);
+            buttonpf.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonpf.setOnAction(event -> {
+                String idAtual = (String) buttonpf.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PARA FAZER");
+            });
+            container.add(buttonpf, col + 10, row);
+
 
             Button button2 = new Button("Deletar");
             button2.setUserData(a[0]);
@@ -1080,6 +1141,211 @@ public void listarProntos() {
             return false;
         }
 
+    }
+    //MenuBar
+    @FXML
+    private void MenuBarSobre(ActionEvent event) {
+        // Código da ação a ser executada quando o item de menu 1 for selecionado
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sobre");
+        alert.setHeaderText(null);
+        alert.setContentText("Desenvolvedor: Julian Silva\n2023\nJavaFx 20.0.1\nVersão 1.0");
+
+        alert.showAndWait();
+
+
+    }
+
+//Sair
+
+    public void btnSair(ActionEvent actionEvent) {
+    System.out.println("Até logo!");
+
+        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
+
+        // Fecha a janela
+        stage.close();
+    }
+
+    public void MenuBarConf(ActionEvent actionEvent) {
+        // Código da ação a ser executada quando o item de menu 1 for selecionado
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Configurações");
+        alert.setHeaderText(null);
+        alert.setContentText(
+                "Banco de dados: 192.168.0.206:3306"
+                +"\nDatabase: controledeartes"
+                +"\nMysql \nVersão 1.0");
+
+        alert.showAndWait();
+    }
+    //Buscar por data
+    public void btnBuscarData(ActionEvent actionEvent) {
+
+        LocalDate dataSelecionada = dtData.getValue();
+        String dataFormatada = dataSelecionada.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        System.out.println(dataFormatada);
+
+        container.getChildren().clear();
+        buscarPorData(dataFormatada);
+
+        dtData.setValue(null);
+        JOptionPane.showMessageDialog(null, "Aqui estão as artes do dia:\n" + dataFormatada);
+    }
+    public void buscarPorData(String datando) {
+        ArrayList<String[]> listaArtesaroeira = new ArrayList<>();
+
+        try {
+            Connection connection = ConectaDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE data = ?");
+            statement.setString(1, datando);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String nome = resultSet.getString("artes");
+                String link = resultSet.getString("link");
+                String data = resultSet.getString("data");
+                String status = resultSet.getString("status");
+
+                String[] artesaroeira = {id, nome, link, data, status};
+                listaArtesaroeira.add(artesaroeira);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        int row = 0;
+        int col = 0;
+        for (String[] a : listaArtesaroeira) {
+            Label label1 = new Label( " ( "+ a[0] + " ) ");
+            Label label2 = new Label(a[1]);
+            Label label3 = new Label(a[2]);
+            Label label4 = new Label(a[3]);
+            Label label5 = new Label(a[4]);
+
+            container.add(label1, col, row);
+            container.add(label2, col + 1, row);
+            container.add(label4, col + 3, row);
+            container.add(label5, col + 4, row);
+
+            Button buttonlink = new Button("Abrir link do email");
+            buttonlink.setUserData(a[0]);
+
+            buttonlink.setOnAction(event -> {
+                String linkAtual = a[2];
+                AroeiraModel.AbrirWebLink(linkAtual);
+            });
+            container.add(buttonlink, col + 2, row);
+
+            Button button = new Button("Editar");
+            button.setUserData(a[0]);
+
+            button.setOnAction(event -> {
+                String idAtual = (String) button.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+                String statusAtual = a[4];
+
+                txtId.setText(idAtual);
+                txtArte.setText(arteAtual);
+                txtLink.setText(linkAtual);
+                txtData.setText(dataAtual);
+                txtStatus.setText(statusAtual);
+            });
+            container.add(button, col + 5, row);
+
+
+
+            Button buttonAlt = new Button("Alteração");
+            buttonAlt.setUserData(a[0]);
+            buttonAlt.setStyle("-fx-background-color: orange; -fx-text-fill: white;");
+
+            buttonAlt.setOnAction(event -> {
+                String idAtual = (String) buttonAlt.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"alteração");
+            });
+            container.add(buttonAlt, col + 7, row);
+
+            Button buttonAp = new Button("Aprovado");
+            buttonAp.setUserData(a[0]);
+            buttonAp.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonAp.setOnAction(event -> {
+                String idAtual = (String) buttonAp.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"APROVADO");
+            });
+            container.add(buttonAp, col + 8, row);
+
+            Button buttonPr = new Button("Pronto");
+            buttonPr.setUserData(a[0]);
+            buttonPr.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+
+            buttonPr.setOnAction(event -> {
+                String idAtual = (String) buttonPr.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PRONTO");
+            });
+            container.add(buttonPr, col + 9, row);
+
+            Button buttonpf = new Button("Para fazer");
+            buttonpf.setUserData(a[0]);
+            buttonpf.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonpf.setOnAction(event -> {
+                String idAtual = (String) buttonpf.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PARA FAZER");
+            });
+            container.add(buttonpf, col + 10, row);
+
+
+            Button button2 = new Button("Deletar");
+            button2.setUserData(a[0]);
+
+            button2.setOnAction(event -> {
+                String idAtual = (String) button2.getUserData();
+
+                try {
+                    AroeiraModel aroeiraModel = new AroeiraModel();
+                    aroeiraModel.deletarDados(Integer.parseInt(idAtual));
+
+                    container.getChildren().clear();
+                    listar();
+                } catch (SQLException e) {
+                    // Tratar a exceção aqui
+                }
+            });
+            //Desativando botão deletar
+            //  container.add(button2, col + 6, row);
+
+            if (col + 7 >= 7) {
+                col = 0;
+                row++;
+            } else {
+                col += 7;
+            }
+        }
     }
 
 }
