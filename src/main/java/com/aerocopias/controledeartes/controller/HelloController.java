@@ -107,7 +107,9 @@ public class HelloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       listar();
+
     }
+
     public void listar(){
         ArrayList<String[]> listaArtesaroeira = new ArrayList<>();
         ArrayList<String[]> listaAlteracao = new ArrayList<>();
@@ -199,8 +201,65 @@ public class HelloController implements Initializable {
             });
             container.add(buttonlink, col + 2, row);
 
-            // Adicionar o botão "alterar" com evento de ação
-            Button button = new Button("Alterar");
+
+            Button buttonAlt = new Button("Alteração");
+            buttonAlt.setUserData(a[0]);
+            buttonAlt.setStyle("-fx-background-color: orange; -fx-text-fill: white;");
+
+            buttonAlt.setOnAction(event -> {
+                String idAtual = (String) buttonAlt.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"alteração");
+            });
+            container.add(buttonAlt, col + 7, row);
+
+            Button buttonAp = new Button("Aprovado");
+            buttonAp.setUserData(a[0]);
+            buttonAp.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonAp.setOnAction(event -> {
+                String idAtual = (String) buttonAp.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"APROVADO");
+            });
+            container.add(buttonAp, col + 8, row);
+
+            Button buttonPr = new Button("Pronto");
+            buttonPr.setUserData(a[0]);
+            buttonPr.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+
+            buttonPr.setOnAction(event -> {
+                String idAtual = (String) buttonPr.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PRONTO");
+            });
+            container.add(buttonPr, col + 9, row);
+
+            Button buttonpf = new Button("Para fazer");
+            buttonpf.setUserData(a[0]);
+            buttonpf.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonpf.setOnAction(event -> {
+                String idAtual = (String) buttonpf.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PARA FAZER");
+            });
+            container.add(buttonpf, col + 10, row);
+
+            // Adicionar o botão "editar" com evento de ação
+            Button button = new Button("Editar");
             button.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
 
             button.setOnAction(event -> {
@@ -209,7 +268,7 @@ public class HelloController implements Initializable {
                 String linkAtual = a[2]; // Obter o valor de a[2]
                 String dataAtual = a[3]; // Obter o valor de a[3]
                 String statusAtual = a[4]; // Obter o valor de a[4]
-                System.out.println("Botão 'Alterar' clicado! ID: " + idAtual + ", Arte: " + arteAtual + ", Link: " + linkAtual + ", Data: " + dataAtual + ", Status: " + statusAtual);
+                System.out.println("Botão 'Editar' clicado! ID: " + idAtual + ", Arte: " + arteAtual + ", Link: " + linkAtual + ", Data: " + dataAtual + ", Status: " + statusAtual);
 
                 txtId.setText(idAtual);
                 txtArte.setText(arteAtual);
@@ -341,7 +400,7 @@ public class HelloController implements Initializable {
             });
             container.add(buttonlink, col + 2, row);
 
-            Button button = new Button("Alterar");
+            Button button = new Button("Editar");
             button.setUserData(a[0]);
 
             button.setOnAction(event -> {
@@ -458,7 +517,7 @@ public class HelloController implements Initializable {
             });
             container.add(buttonlink, col + 2, row);
 
-            Button button = new Button("Alterar");
+            Button button = new Button("Editar");
             button.setUserData(a[0]);
 
             button.setOnAction(event -> {
@@ -475,6 +534,64 @@ public class HelloController implements Initializable {
                 txtStatus.setText(statusAtual);
             });
             container.add(button, col + 5, row);
+
+
+            Button buttonAlt = new Button("Alteração");
+            buttonAlt.setUserData(a[0]);
+            buttonAlt.setStyle("-fx-background-color: orange; -fx-text-fill: white;");
+
+            buttonAlt.setOnAction(event -> {
+                String idAtual = (String) buttonAlt.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"alteração");
+            });
+            container.add(buttonAlt, col + 7, row);
+
+            Button buttonAp = new Button("Aprovado");
+            buttonAp.setUserData(a[0]);
+            buttonAp.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonAp.setOnAction(event -> {
+                String idAtual = (String) buttonAp.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"APROVADO");
+            });
+            container.add(buttonAp, col + 8, row);
+
+            Button buttonPr = new Button("Pronto");
+            buttonPr.setUserData(a[0]);
+            buttonPr.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+
+            buttonPr.setOnAction(event -> {
+                String idAtual = (String) buttonPr.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PRONTO");
+            });
+            container.add(buttonPr, col + 9, row);
+
+            Button buttonpf = new Button("Para fazer");
+            buttonpf.setUserData(a[0]);
+            buttonpf.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonpf.setOnAction(event -> {
+                String idAtual = (String) buttonpf.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PARA FAZER");
+            });
+            container.add(buttonpf, col + 10, row);
+
 
             Button button2 = new Button("Deletar");
             button2.setUserData(a[0]);
@@ -573,7 +690,7 @@ public void listarProntos() {
         });
         container.add(buttonlink, col + 2, row);
 
-        Button button = new Button("Alterar");
+        Button button = new Button("Editar");
         button.setUserData(a[0]);
 
         button.setOnAction(event -> {
@@ -590,6 +707,64 @@ public void listarProntos() {
             txtStatus.setText(statusAtual);
         });
         container.add(button, col + 5, row);
+
+
+        Button buttonAlt = new Button("Alteração");
+        buttonAlt.setUserData(a[0]);
+        buttonAlt.setStyle("-fx-background-color: orange; -fx-text-fill: white;");
+
+        buttonAlt.setOnAction(event -> {
+            String idAtual = (String) buttonAlt.getUserData();
+            String arteAtual = a[1];
+            String linkAtual = a[2];
+            String dataAtual = a[3];
+
+            enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"alteração");
+        });
+        container.add(buttonAlt, col + 7, row);
+
+        Button buttonAp = new Button("Aprovado");
+        buttonAp.setUserData(a[0]);
+        buttonAp.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+        buttonAp.setOnAction(event -> {
+            String idAtual = (String) buttonAp.getUserData();
+            String arteAtual = a[1];
+            String linkAtual = a[2];
+            String dataAtual = a[3];
+
+            enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"APROVADO");
+        });
+        container.add(buttonAp, col + 8, row);
+
+        Button buttonPr = new Button("Pronto");
+        buttonPr.setUserData(a[0]);
+        buttonPr.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+
+        buttonPr.setOnAction(event -> {
+            String idAtual = (String) buttonPr.getUserData();
+            String arteAtual = a[1];
+            String linkAtual = a[2];
+            String dataAtual = a[3];
+
+            enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PRONTO");
+        });
+        container.add(buttonPr, col + 9, row);
+
+        Button buttonpf = new Button("Para fazer");
+        buttonpf.setUserData(a[0]);
+        buttonpf.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+        buttonpf.setOnAction(event -> {
+            String idAtual = (String) buttonpf.getUserData();
+            String arteAtual = a[1];
+            String linkAtual = a[2];
+            String dataAtual = a[3];
+
+            enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PARA FAZER");
+        });
+        container.add(buttonpf, col + 10, row);
+
 
         Button button2 = new Button("Deletar");
         button2.setUserData(a[0]);
@@ -689,7 +864,7 @@ public void listarProntos() {
             });
             container.add(buttonlink, col + 2, row);
 
-            Button button = new Button("Alterar");
+            Button button = new Button("Editar");
             button.setUserData(a[0]);
 
             button.setOnAction(event -> {
@@ -706,6 +881,64 @@ public void listarProntos() {
                 txtStatus.setText(statusAtual);
             });
             container.add(button, col + 5, row);
+
+
+            Button buttonAlt = new Button("Alteração");
+            buttonAlt.setUserData(a[0]);
+            buttonAlt.setStyle("-fx-background-color: orange; -fx-text-fill: white;");
+
+            buttonAlt.setOnAction(event -> {
+                String idAtual = (String) buttonAlt.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"alteração");
+            });
+            container.add(buttonAlt, col + 7, row);
+
+            Button buttonAp = new Button("Aprovado");
+            buttonAp.setUserData(a[0]);
+            buttonAp.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonAp.setOnAction(event -> {
+                String idAtual = (String) buttonAp.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"APROVADO");
+            });
+            container.add(buttonAp, col + 8, row);
+
+            Button buttonPr = new Button("Pronto");
+            buttonPr.setUserData(a[0]);
+            buttonPr.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+
+            buttonPr.setOnAction(event -> {
+                String idAtual = (String) buttonPr.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PRONTO");
+            });
+            container.add(buttonPr, col + 9, row);
+
+            Button buttonpf = new Button("Para fazer");
+            buttonpf.setUserData(a[0]);
+            buttonpf.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+
+            buttonpf.setOnAction(event -> {
+                String idAtual = (String) buttonpf.getUserData();
+                String arteAtual = a[1];
+                String linkAtual = a[2];
+                String dataAtual = a[3];
+
+                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PARA FAZER");
+            });
+            container.add(buttonpf, col + 10, row);
+
 
             Button button2 = new Button("Deletar");
             button2.setUserData(a[0]);
@@ -741,6 +974,34 @@ public void listarProntos() {
         String data = txtData.getText();
         String status = txtStatus.getText();
 
+
+        AroeiraController aroeiraController = new AroeiraController();
+
+        aroeiraController.setId(id);
+        aroeiraController.setArtes(nome);
+        aroeiraController.setLink(link);
+        aroeiraController.setData(data);
+        aroeiraController.setStatus(status);
+
+        AroeiraModel aroeiraModel = new AroeiraModel();
+        try {
+            if (status.equalsIgnoreCase("APROVADO") || status.equalsIgnoreCase("ALTERAÇÃO") || status.equalsIgnoreCase("PARA FAZER") || status.equalsIgnoreCase("PRONTO")){
+                aroeiraModel.atualizarDados(aroeiraController.getId(), aroeiraController.getArtes(), aroeiraController.getLink(), aroeiraController.getData(), aroeiraController.getStatus());
+                limparFormulario();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Digite: PARA FAZER, APROVADO, ALTERAÇÃO OU PRONTO!");
+            }
+
+        } catch (SQLException e) {
+            // Tratar a exceção aqui
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void enviarAtualizarComParams(String id, String nome, String link, String data, String status){
 
         AroeiraController aroeiraController = new AroeiraController();
 
