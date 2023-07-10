@@ -14,3 +14,7 @@ VALUES ('arte 01', 'http://www.google.com', '06/07/2023', 'Fazendo');
 
 ALTER TABLE artesaroeira
 ADD COLUMN data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+
+GRANT ALL PRIVILEGES ON controledeartes.* TO 'root'@'%' IDENTIFIED BY '';
+FLUSH PRIVILEGES;
