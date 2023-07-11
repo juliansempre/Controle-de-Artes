@@ -5,12 +5,14 @@ CREATE TABLE artesaroeira (
 id INT AUTO_INCREMENT PRIMARY KEY,
 artes VARCHAR(255),
 link VARCHAR(255),
-data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-status VARCHAR(20)
+data  VARCHAR(20),
+status VARCHAR(20),
+data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO artesaroeira (artes, link, data, status)
-VALUES ('arte 01', 'http://www.google.com', '06/07/2023', 'Fazendo');
+INSERT INTO artesaroeira (artes, link, data, status, data_hora)
+VALUES ('arte 01', 'http://www.google.com', '2023-07-06', 'Fazendo', NOW());
+
 
 ALTER TABLE artesaroeira
 ADD COLUMN data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
