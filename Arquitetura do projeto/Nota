@@ -1,0 +1,6 @@
+O projeto contem erros!
+1. Regra de negócio (Operations) no controller HelloController.java, ele deve enviar para a model fazer a regra de negócio.
+2. AroeiraController.java faz a função de Entidade <<Entity>> no qual deveria estar na AroeiraModel.
+
+O projeto precisa ser refatorado.
+
