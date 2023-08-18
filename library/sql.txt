@@ -1,0 +1,52 @@
+﻿-- Criação do banco de dados
+CREATE DATABASE controledeartes;
+USE controledeartes;
+
+-- Tabela artesaroeira
+CREATE TABLE artesaroeira (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    artes VARCHAR(255),
+    link VARCHAR(255),
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20)
+);
+
+-- Inserção de dados na tabela artesaroeira
+INSERT INTO artesaroeira (artes, link, status)
+VALUES ('arte 01', 'http://www.google.com', 'Fazendo');
+
+-- Adição de coluna na tabela artesaroeira
+ALTER TABLE artesaroeira
+ADD COLUMN data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+-- Tabela usuarios
+CREATE TABLE usuarios (
+    id INT NOT NULL AUTO_INCREMENT,
+    usuario VARCHAR(30) NOT NULL,
+    senha VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8;
+
+-- Inserção de dados na tabela usuarios
+INSERT INTO usuarios (usuario, senha)
+VALUES ('admin', 'admin');
+
+-- Seleção de dados da tabela usuarios
+SELECT * FROM usuarios;
+
+-- Tabela producaoaroeira
+
+CREATE TABLE producaoaroeira (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    quantidade INT,
+    descricao VARCHAR(255),
+    medida VARCHAR(50),
+    status VARCHAR(50),
+    data VARCHAR(50),
+    funcionario VARCHAR(255),
+    data_postagem DATE
+);
+
+
+ALTER TABLE producaoaroeira MODIFY COLUMN id INT AUTO_INCREMENT;
+

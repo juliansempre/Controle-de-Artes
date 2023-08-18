@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="mainContainerVBOX1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aerocopias.controledeartes.producaoaroeira.controller.ProducaoAroeiraController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Arquivo">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#btnproducaoAroeiraIrPainel" text="Painel" />
+                        <MenuItem mnemonicParsing="false" onAction="#btnproducaoAroeiraSair" text="Sair" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Editar">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Configurações" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ajuda">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Sobre" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <GridPane minHeight="500.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="292.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <BorderPane fx:id="mainContainer" prefHeight="12.0" prefWidth="800.0" GridPane.rowIndex="6" />
+                <GridPane alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label contentDisplay="CENTER" text="Produção Aroeira" GridPane.columnIndex="1">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="44.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../img/logo.png" />
+                            </image>
+                            <GridPane.margin>
+                                <Insets left="10.0" />
+                            </GridPane.margin>
+                        </ImageView>
+                        <Label fx:id="labeltxtSaudacao" alignment="CENTER" text="Olá Funcionário" GridPane.columnIndex="2">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <GridPane.margin>
+                                <Insets right="10.0" />
+                            </GridPane.margin>
+                        </Label>
+                    </children>
+                </GridPane>
+                <VBox fx:id="mainContainerVBOX" maxHeight="350.0" GridPane.rowIndex="4">
+                    <children>
+                        <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="ALWAYS" prefWidth="600.0" vbarPolicy="ALWAYS">
+                     <content>
+                        <ListView fx:id="lvProducaoAroeira">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></ListView>
+                     </content>
+                        </ScrollPane>
+
+                    </children></VBox>
+                <GridPane alignment="CENTER" prefHeight="34.0" prefWidth="600.0" GridPane.rowIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="56.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="74.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="222.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="92.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="85.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Código">
+                            <GridPane.margin>
+                                <Insets left="5.0" />
+                            </GridPane.margin>
+                        </Label>
+                        <Label text="Quantidade" GridPane.columnIndex="1" />
+                        <Label text="Medida" GridPane.columnIndex="3" />
+                        <Label text="Data" GridPane.columnIndex="4" />
+                        <Label text="Status" GridPane.columnIndex="5" />
+                        <Label text="Descrição" GridPane.columnIndex="2" />
+                    </children>
+                </GridPane>
+                <GridPane alignment="CENTER" prefHeight="34.0" prefWidth="600.0" GridPane.rowIndex="2">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="58.0" />
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="71.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="223.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="71.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="90.0" />
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="87.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <TextField fx:id="txtIdProducaoArte" editable="false" minWidth="0.0" prefHeight="50.0" prefWidth="53.0" style="-fx-background-color: #CFCFCF;" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                            <padding>
+                                <Insets left="5.0" right="5.0" />
+                            </padding>
+                            <GridPane.margin>
+                                <Insets left="5.0" />
+                            </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtQuantidadeProducaoArte" minWidth="0.0" prefHeight="50.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <TextField fx:id="txtDescricaoProducaoArte" minWidth="0.0" prefHeight="50.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <TextField fx:id="txtMedidaProducaoArte" minWidth="0.0" prefHeight="50.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <TextField fx:id="txtStatusProducaoArte" minWidth="0.0" prefHeight="50.0" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <DatePicker fx:id="txtDataProducaoArte" prefHeight="50.0" GridPane.columnIndex="4" />
+                    </children>
+                </GridPane>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#btnSalvarProducaoArte" prefHeight="25.0" prefWidth="115.0" text="Salvar" />
+                        <Button mnemonicParsing="false" onAction="#btnAtualizarProducaoArte" prefHeight="25.0" prefWidth="115.0" text="Atualizar">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="600.0" GridPane.rowIndex="5">
+                    <children>
+                        <Button mnemonicParsing="false" text="PARA FAZER">
+                            <HBox.margin>
+                                <Insets top="39.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="PRONTOS">
+                            <HBox.margin>
+                                <Insets top="39.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="HOJE">
+                            <HBox.margin>
+                                <Insets top="39.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#brnLimparFormularioProducaoAroeira" prefHeight="25.0" prefWidth="87.0" text="LIMPAR">
+                            <HBox.margin>
+                                <Insets top="39.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </children>
+</VBox>
