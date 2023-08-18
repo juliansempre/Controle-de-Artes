@@ -97,7 +97,7 @@
                               <Insets left="6.0" />
                            </padding>
                         </Button>
-                        <Button layoutX="276.0" layoutY="24.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="127.0" text="xxxx">
+                        <Button layoutX="276.0" layoutY="24.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="127.0">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -105,7 +105,7 @@
                               <Insets left="6.0" />
                            </padding>
                         </Button>
-                        <Button layoutX="415.0" layoutY="24.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="121.0" text="xxxx">
+                        <Button layoutX="415.0" layoutY="24.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="121.0">
                            <font>
                               <Font size="13.0" />
                            </font>

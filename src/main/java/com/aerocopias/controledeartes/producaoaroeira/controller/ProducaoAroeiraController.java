@@ -309,9 +309,11 @@ public class ProducaoAroeiraController implements Initializable {
                     Date currentDate = new Date(System.currentTimeMillis());
                     ProducaoAroeiraModel p = new ProducaoAroeiraModel(0,0,"","","","","","",mainContainer);
                     try {
-                        p.atualizarDadosTarefa(item.getId(), item.getQuantidade(), item.getDescricao(), item.getMedida(), "pronto", item.getData(), item.getFuncionario(),currentDate);
-                        mainContainer.getChildren().clear();
-                        listarTarefasFromDatabase();
+                        if(!Objects.equals(item.getStatus(), "pronto")){
+                            p.atualizarDadosTarefa(item.getId(), item.getQuantidade(), item.getDescricao(), item.getMedida(), "pronto", item.getData(), item.getFuncionario(),currentDate);
+                            mainContainer.getChildren().clear();
+                            listarTarefasFromDatabase();
+                        }
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -333,9 +335,11 @@ public class ProducaoAroeiraController implements Initializable {
                     Date currentDate = new Date(System.currentTimeMillis());
                     ProducaoAroeiraModel p = new ProducaoAroeiraModel(0,0,"","","","","","",mainContainer);
                     try {
-                        p.atualizarDadosTarefa(item.getId(), item.getQuantidade(), item.getDescricao(), item.getMedida(), "para fazer", item.getData(), item.getFuncionario(),currentDate);
-                        mainContainer.getChildren().clear();
-                        listarTarefasFromDatabase();
+                      if(!Objects.equals(item.getStatus(), "para fazer")){
+                          p.atualizarDadosTarefa(item.getId(), item.getQuantidade(), item.getDescricao(), item.getMedida(), "para fazer", item.getData(), item.getFuncionario(),currentDate);
+                          mainContainer.getChildren().clear();
+                          listarTarefasFromDatabase();
+                      }
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -422,7 +426,7 @@ public class ProducaoAroeiraController implements Initializable {
                     cellLayout.setAlignment(Pos.CENTER_LEFT); // Alinhar à esquerda
 
                     // Configuração do texto
-                    Label textLabel = new Label(item.getId() + " ) | " + item.getData() + " | " + item.getQuantidade() + " " + item.getDescricao() + " " + item.getMedida() + " " + item.getStatus().toUpperCase() + " " + item.getFuncionario().toUpperCase());
+                    Label textLabel = new Label(item.getId() + " ) | " + item.getData() + " | " + item.getQuantidade() + " " + item.getDescricao() + " " + item.getMedida() + " ➢ " + item.getStatus().toUpperCase() + " ● " + item.getFuncionario().toUpperCase());
                     HBox textLayout = new HBox(textLabel); // Layout do texto
                     textLayout.setAlignment(Pos.CENTER_LEFT); // Alinhar à esquerda
 
