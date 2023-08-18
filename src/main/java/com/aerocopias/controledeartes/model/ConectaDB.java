@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConectaDB {
-    //private static final String URL = "jdbc:mysql://192.168.0.206:3306/controledeartes";
-    private static final String URL = "jdbc:mysql://localhost/controledeartes";
+    private static final String URL = "jdbc:mysql://192.168.0.206:3306/controledeartes";
+    //private static final String URL = "jdbc:mysql://localhost/controledeartes";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
