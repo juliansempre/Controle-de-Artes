@@ -577,5 +577,10 @@ public class ProducaoAroeiraController implements Initializable {
 
             }
     }
+    public void btnVerTudoAroeiraIrPainel(ActionEvent actionEvent) {
+        mainContainer.getChildren().clear();
+        listaPersonalizada("SELECT * FROM producaoaroeira");
+    }
+
 }
 

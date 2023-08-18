@@ -26,6 +26,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Arquivo">
                     <items>
+                  <MenuItem mnemonicParsing="false" onAction="#btnVerTudoAroeiraIrPainel" text="Ver todos os serviços" />
                         <MenuItem mnemonicParsing="false" onAction="#btnproducaoAroeiraIrPainel" text="Painel" />
                         <MenuItem mnemonicParsing="false" onAction="#btnproducaoAroeiraSair" text="Sair" />
                     </items>
