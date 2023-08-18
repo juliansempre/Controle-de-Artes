@@ -160,7 +160,30 @@
                 </GridPane>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#btnSalvarProducaoArte" prefHeight="25.0" prefWidth="115.0" text="Salvar" />
+                  <TextField prefHeight="25.0" prefWidth="53.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" text="Pesquisa por código">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <DatePicker>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <Button mnemonicParsing="false" text="Pesquisa por data">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                        <Button mnemonicParsing="false" onAction="#btnSalvarProducaoArte" prefHeight="25.0" prefWidth="115.0" text="Salvar">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin></Button>
                         <Button mnemonicParsing="false" onAction="#btnAtualizarProducaoArte" prefHeight="25.0" prefWidth="115.0" text="Atualizar">
                             <HBox.margin>
                                 <Insets left="10.0" />
@@ -170,12 +193,12 @@
                 </HBox>
                 <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="600.0" GridPane.rowIndex="5">
                     <children>
-                        <Button mnemonicParsing="false" text="PARA FAZER">
+                        <Button mnemonicParsing="false" onAction="#btnParaFazerListarProducaoAroeira" text="PARA FAZER">
                             <HBox.margin>
                                 <Insets top="39.0" />
                             </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="PRONTOS">
+                        <Button mnemonicParsing="false" onAction="#btnProntosListarProducaoAroeira" prefHeight="25.0" prefWidth="87.0" text="PRONTOS">
                             <HBox.margin>
                                 <Insets top="39.0" />
                             </HBox.margin>

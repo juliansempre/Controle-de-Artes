@@ -198,7 +198,9 @@ public class ProducaoAroeiraController implements Initializable {
                 JOptionPane.showMessageDialog(null, "Erro ao inserir tarefa");
                 System.out.println("Erro: "+e);
             }
-
+            //Refresh
+            mainContainer.getChildren().clear();
+            listarTarefasFromDatabase();
             limpar();
         }
 
@@ -251,19 +253,26 @@ public class ProducaoAroeiraController implements Initializable {
                 JOptionPane.showMessageDialog(null, "Erro ao inserir tarefa");
                 System.out.println("Erro: "+e);
             }
-
+            //Refresh
+            mainContainer.getChildren().clear();
+            listarTarefasFromDatabase();
             limpar();
         }
 
     }
 
     public void limpar(){
+        txtIdProducaoArte.setText("");
         txtQuantidadeProducaoArte.setText("");
         txtDescricaoProducaoArte.setText("");
         txtMedidaProducaoArte.setText("");
         LocalDateTime now = LocalDateTime.now();
         txtDataProducaoArte.setValue(LocalDate.from(now));
         txtStatusProducaoArte.setText("");
+
+        //Refresh
+        mainContainer.getChildren().clear();
+        listarTarefasFromDatabase();
     }
 
     //Cell Factory inserindo botão na listview
@@ -278,7 +287,7 @@ public class ProducaoAroeiraController implements Initializable {
               JOptionPane.showMessageDialog(null, "Selecione um item da lista");
             };
 
-            buttonInfos.add(new ButtonInfo("PRONTO", () -> {
+            buttonInfos.add(new ButtonInfo("✔ | PRONTO", () -> {
                 // Lógica para o botão 1
                 int index = lvProducaoAroeira.getSelectionModel().getSelectedIndex();
                 if (index >= 0 && index < lvProducaoAroeira.getItems().size()) {
@@ -322,6 +331,42 @@ public class ProducaoAroeiraController implements Initializable {
                     runnable.run();
                 }
             }, ""));
+
+            buttonInfos.add(new ButtonInfo("DELETAR", () -> {
+                // Lógica para o delete button
+                int index = lvProducaoAroeira.getSelectionModel().getSelectedIndex();
+                if (index >= 0 && index < lvProducaoAroeira.getItems().size()) {
+                    ProducaoAroeiraModel item = (ProducaoAroeiraModel) lvProducaoAroeira.getItems().get(index);
+                    System.out.println("Botão deletar clicado para o item de ID: " + item.getId());
+
+                    ProducaoAroeiraModel producaoAroeiraModel = new ProducaoAroeiraModel(0,0,"","","","","","",mainContainer);
+                    String[] opcoes = {"Sim", "Não"};
+                    int resposta = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+                    if (resposta == JOptionPane.YES_OPTION) {
+                        // Código para o botão sim
+
+                        try {
+                            producaoAroeiraModel.excluirTarefa(item.getId());
+                            //refresh
+                            mainContainer.getChildren().clear();
+                            listarTarefasFromDatabase();
+
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    } else if (resposta == JOptionPane.NO_OPTION) {
+                        // Código para o botão não
+                        //refresh
+                        mainContainer.getChildren().clear();
+                        listarTarefasFromDatabase();
+                    }
+
+                } else {
+                    System.out.println("Índice inválido selecionado.");
+                    runnable.run();
+                }
+            }, "#CD0000"));
 
             // Adicione mais botões conforme necessário, com cores diferentes
 
@@ -391,6 +436,14 @@ public class ProducaoAroeiraController implements Initializable {
         });
     }
 
+    public void btnParaFazerListarProducaoAroeira(ActionEvent actionEvent) {
+        //Refresh
+        mainContainer.getChildren().clear();
+        listarTarefasFromDatabase();
+    }
+
+    public void btnProntosListarProducaoAroeira(ActionEvent actionEvent) {
+    }
 
 
 // ... (resto do código)
@@ -424,5 +477,40 @@ public class ProducaoAroeiraController implements Initializable {
     public void brnLimparFormularioProducaoAroeira(ActionEvent event) {
         limpar();
     }
+
+    public void listaPersonalizada(String comandoSQLquery) {
+        ConectaDB db = new ConectaDB();
+
+        try (Connection connection = db.getConnection()) {
+            System.out.println("Conexão da listagem ok");
+            String query = comandoSQLquery;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ObservableList<ProducaoAroeiraModel> tarefas = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int quantidade = resultSet.getInt("quantidade");
+                String descricao = resultSet.getString("descricao");
+                String medida = resultSet.getString("medida");
+                String status = resultSet.getString("status");
+                String data = resultSet.getString("data");
+                String funcionario = resultSet.getString("funcionario");
+                String dataPostagem = resultSet.getString("data_postagem");
+
+                BorderPane mainContainer = new BorderPane();
+                ProducaoAroeiraModel tarefa = new ProducaoAroeiraModel(id, quantidade, descricao, medida, status, data, funcionario, dataPostagem, mainContainer);
+                tarefas.add(tarefa);
+            }
+
+            obsTarefas = FXCollections.observableArrayList(tarefas);
+            lvProducaoAroeira.setItems(obsTarefas);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
