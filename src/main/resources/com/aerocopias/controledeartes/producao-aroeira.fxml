@@ -160,22 +160,22 @@
                 </GridPane>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                     <children>
-                  <TextField prefHeight="25.0" prefWidth="53.0">
+                  <TextField fx:id="txtCodigoPesquisaProducaoAroeira" prefHeight="25.0" prefWidth="53.0">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" text="Pesquisa por código">
+                  <Button mnemonicParsing="false" onAction="#btnPesquisaCodigoListarProducaoAroeira" text="Pesquisa por código">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
-                  <DatePicker>
+                  <DatePicker fx:id="dtPesquisaDataProducaoAroeira">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </DatePicker>
-                  <Button mnemonicParsing="false" text="Pesquisa por data">
+                  <Button mnemonicParsing="false" onAction="#btnPesquisaDataListarProducaoAroeira" text="Pesquisa por data">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -203,7 +203,7 @@
                                 <Insets top="39.0" />
                             </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="HOJE">
+                        <Button mnemonicParsing="false" onAction="#btnHojeListarProducaoAroeira" prefHeight="25.0" prefWidth="87.0" text="HOJE">
                             <HBox.margin>
                                 <Insets top="39.0" />
                             </HBox.margin>

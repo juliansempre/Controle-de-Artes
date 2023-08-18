@@ -29,6 +29,7 @@ import java.util.*;
 public class ProducaoAroeiraController implements Initializable {
     @FXML
     public VBox mainContainerVBOX;
+    public DatePicker dtPesquisaDataProducaoAroeira;
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -56,6 +57,8 @@ public class ProducaoAroeiraController implements Initializable {
     private DatePicker txtDataProducaoArte;
     @FXML
     private TextField txtStatusProducaoArte;
+    @FXML
+    private TextField txtCodigoPesquisaProducaoAroeira;
 
 
     //Contrutor
@@ -123,7 +126,8 @@ public class ProducaoAroeiraController implements Initializable {
 
         try (Connection connection = db.getConnection()) {
             System.out.println("Conexão da listagem ok");
-            String query = "SELECT * FROM producaoaroeira";
+           // String query = "SELECT * FROM producaoaroeira";
+            String query = "SELECT * FROM producaoaroeira WHERE status = 'para fazer'";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -190,18 +194,23 @@ public class ProducaoAroeiraController implements Initializable {
             JOptionPane.showMessageDialog(null, "Preencha os campos");
         }else{
             try {
-                System.out.println("Inserindo...");
-                ProducaoAroeiraModel p = new ProducaoAroeiraModel(0,quantidade,descricao,medida,status,data,"funcionario",formattedDate,mainContainer);
-                p.inserirDadosTarefa(quantidade, descricao, medida, status, data, nomeUsuario, currentDate);
+                if(status.equalsIgnoreCase("PRONTO") || status.equalsIgnoreCase("PARA FAZER")){
+                    System.out.println("Inserindo...");
+                    ProducaoAroeiraModel p = new ProducaoAroeiraModel(0,quantidade,descricao,medida,status,data,"funcionario",formattedDate,mainContainer);
+                    p.inserirDadosTarefa(quantidade, descricao, medida, status, data, nomeUsuario, currentDate);
+                    //Refresh
+                    mainContainer.getChildren().clear();
+                    listarTarefasFromDatabase();
+                    limpar();
+                }else {
+                    JOptionPane.showMessageDialog(null, "Digite apenas: para fazer ou pronto ");
+                }
 
             }catch (Exception e){
                 JOptionPane.showMessageDialog(null, "Erro ao inserir tarefa");
                 System.out.println("Erro: "+e);
             }
-            //Refresh
-            mainContainer.getChildren().clear();
-            listarTarefasFromDatabase();
-            limpar();
+
         }
 
     }
@@ -269,6 +278,8 @@ public class ProducaoAroeiraController implements Initializable {
         LocalDateTime now = LocalDateTime.now();
         txtDataProducaoArte.setValue(LocalDate.from(now));
         txtStatusProducaoArte.setText("");
+        txtCodigoPesquisaProducaoAroeira.setText("");
+        dtPesquisaDataProducaoAroeira.setValue(null);
 
         //Refresh
         mainContainer.getChildren().clear();
@@ -293,6 +304,18 @@ public class ProducaoAroeiraController implements Initializable {
                 if (index >= 0 && index < lvProducaoAroeira.getItems().size()) {
                     ProducaoAroeiraModel item = (ProducaoAroeiraModel) lvProducaoAroeira.getItems().get(index);
                     System.out.println("Botão pronto clicado para o item de ID: " + item.getId());
+
+                    System.out.println("Atualizando...");
+                    Date currentDate = new Date(System.currentTimeMillis());
+                    ProducaoAroeiraModel p = new ProducaoAroeiraModel(0,0,"","","","","","",mainContainer);
+                    try {
+                        p.atualizarDadosTarefa(item.getId(), item.getQuantidade(), item.getDescricao(), item.getMedida(), "pronto", item.getData(), item.getFuncionario(),currentDate);
+                        mainContainer.getChildren().clear();
+                        listarTarefasFromDatabase();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
                 } else {
                     System.out.println("Índice inválido selecionado.");
                     runnable.run();
@@ -305,6 +328,17 @@ public class ProducaoAroeiraController implements Initializable {
                 if (index >= 0 && index < lvProducaoAroeira.getItems().size()) {
                     ProducaoAroeiraModel item = (ProducaoAroeiraModel) lvProducaoAroeira.getItems().get(index);
                     System.out.println("Botão para fazer clicado para o item de ID: " + item.getId());
+
+                    System.out.println("Atualizando...");
+                    Date currentDate = new Date(System.currentTimeMillis());
+                    ProducaoAroeiraModel p = new ProducaoAroeiraModel(0,0,"","","","","","",mainContainer);
+                    try {
+                        p.atualizarDadosTarefa(item.getId(), item.getQuantidade(), item.getDescricao(), item.getMedida(), "para fazer", item.getData(), item.getFuncionario(),currentDate);
+                        mainContainer.getChildren().clear();
+                        listarTarefasFromDatabase();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     System.out.println("Índice inválido selecionado.");
                     runnable.run();
@@ -442,12 +476,6 @@ public class ProducaoAroeiraController implements Initializable {
         listarTarefasFromDatabase();
     }
 
-    public void btnProntosListarProducaoAroeira(ActionEvent actionEvent) {
-    }
-
-
-// ... (resto do código)
-
 
     private static class ButtonInfo {
         private final String text;
@@ -511,6 +539,43 @@ public class ProducaoAroeiraController implements Initializable {
             e.printStackTrace();
         }
     }
+    public void btnProntosListarProducaoAroeira(ActionEvent actionEvent) {
+        mainContainer.getChildren().clear();
+        listaPersonalizada("SELECT * FROM producaoaroeira WHERE status = 'pronto'");
 
+    }
 
+    public void btnHojeListarProducaoAroeira(ActionEvent actionEvent) {
+        Date currentDate = new Date(System.currentTimeMillis());
+        mainContainer.getChildren().clear();
+        listaPersonalizada("SELECT * FROM producaoaroeira WHERE data_postagem = '"+ currentDate +"'");
+
+    }
+
+    public void btnPesquisaDataListarProducaoAroeira(ActionEvent actionEvent) {
+        LocalDate dataSelecionadaBusca = dtPesquisaDataProducaoAroeira.getValue();
+        String databusca = dataSelecionadaBusca.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        if(dataSelecionadaBusca == null){
+            JOptionPane.showMessageDialog(null,"Preencha o campo!");
+        }else {
+            mainContainer.getChildren().clear();
+            listaPersonalizada("SELECT * FROM producaoaroeira WHERE data_postagem = '"+ dataSelecionadaBusca +"'");
+            JOptionPane.showMessageDialog(null,"Aqui estão os serviços do dia "+databusca);
+
+        }
+    }
+
+    public void btnPesquisaCodigoListarProducaoAroeira(ActionEvent actionEvent) {
+            String idCodigo = txtCodigoPesquisaProducaoAroeira.getText();
+
+            if(idCodigo.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Preencha o campo!");
+            }else {
+                mainContainer.getChildren().clear();
+                listaPersonalizada("SELECT * FROM producaoaroeira WHERE id = '"+ idCodigo +"'");
+
+            }
+    }
 }
+
