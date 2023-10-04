@@ -48,8 +48,8 @@ public class AroeiraModel {
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("Arte atualizada com sucesso!");
-                JOptionPane.showMessageDialog(null, "Arte atualizada com sucesso!");
+                System.out.println("Arte "+ id +" atualizada com sucesso!");
+                JOptionPane.showMessageDialog(null, "Arte "+ id +" atualizada com sucesso!");
             } else {
                 System.out.println("Nenhum dado foi atualizado.");
                 JOptionPane.showMessageDialog(null, "Nenhum dado foi atualizado.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -71,8 +71,8 @@ public class AroeiraModel {
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                System.out.println("Arte deletada com sucesso!");
-                JOptionPane.showMessageDialog(null, "Arte deletada com sucesso!");
+                System.out.println("Arte "+ id +" deletada com sucesso!");
+                JOptionPane.showMessageDialog(null, "Arte "+ id +" deletada com sucesso!");
             } else {
                 System.out.println("Nenhum dado foi deletado.");
                 JOptionPane.showMessageDialog(null, "Nenhum dado foi deletado.", "Aviso", JOptionPane.WARNING_MESSAGE);

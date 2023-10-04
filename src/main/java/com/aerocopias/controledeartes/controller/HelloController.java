@@ -5,8 +5,9 @@ import com.aerocopias.controledeartes.autentificacao.login.model.LoginModel;
 import com.aerocopias.controledeartes.painel.model.PainelModel;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+import java.util.Date;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import com.aerocopias.controledeartes.model.AroeiraModel;
@@ -28,6 +29,7 @@ import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -111,13 +113,27 @@ public class HelloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       listar();
-
+      datahoje();
             //sessão
             String nomeUsuario = SessãoController.getNomeUsuarioAutenticado();
             if (nomeUsuario != null) {
                labelNomeDoFuncionario.setText("" + nomeUsuario.toUpperCase() + "");
             }
 
+    }
+    public void datahoje(){
+        // Obtém a data atual
+        Date dataAtual = new Date();
+
+        // Define o formato desejado para a data (PT-BR)
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+
+        // Formata a data para o padrão PT-BR
+        String dataFormatada = formato.format(dataAtual);
+
+        // Imprime a data formatada
+        System.out.println("Data atual no formato PT-BR: " + dataFormatada);
+        txtData.setText(dataFormatada);
     }
     public void listar(){
         ArrayList<String[]> listaArtesaroeira = new ArrayList<>();
@@ -287,7 +303,16 @@ public class HelloController implements Initializable {
 
             });
             container.add(button, col + 5, row);
+/*
+            // Adicionar o botão "abrir" com evento de ação
+            Button buttonAbr = new Button("Abrir");
+            buttonAbr.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
 
+            buttonAbr.setOnAction(event -> {
+                JOptionPane.showMessageDialog(null,"aberto");
+            });
+            container.add(buttonAbr, col + 8, row);
+*/
             // Adicionar o botão "deletar" com evento de ação
             Button button2 = new Button("deletar");
             button2.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
@@ -1114,10 +1139,15 @@ public void listarProntos() {
 
     }
     public void limparFormulario(){
+        // Obtém a data atual
+        Date dataAtual = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+        String dataFormatada = formato.format(dataAtual);
+
         txtId.setText("");
         txtArte.setText("");
         txtLink.setText("");
-        txtData.setText("");
+        txtData.setText(dataFormatada);
         txtStatus.setText("");
 
         txtBuscarei.setText("");
@@ -1173,7 +1203,7 @@ public void listarProntos() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sobre");
         alert.setHeaderText(null);
-        alert.setContentText("Desenvolvedor: Julian Silva\n2023\nJavaFx 20.0.1\nVersão 1.0.2");
+        alert.setContentText("Desenvolvedor: Julian Silva\n2023\nJavaFx 20.0.1\nVersão 1.0.3");
 
         alert.showAndWait();
 
