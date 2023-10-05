@@ -1,6 +1,7 @@
 package com.aerocopias.controledeartes.painel.controller;
 
 
+import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
 import com.aerocopias.controledeartes.autentificacao.login.controller.SessãoController;
 import com.aerocopias.controledeartes.autentificacao.login.model.LoginModel;
 import com.aerocopias.controledeartes.controller.HelloController;
@@ -81,8 +82,10 @@ public class PainelController implements Initializable {
         h.MenuBarSobre(event);
     }
     public void btnConfPainel(ActionEvent event) throws IOException{
-        HelloController h = new HelloController();
-        h.MenuBarConf(event);
+//        HelloController h = new HelloController();
+//        h.MenuBarConf(event);
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        configModel.config();
     }
 
 

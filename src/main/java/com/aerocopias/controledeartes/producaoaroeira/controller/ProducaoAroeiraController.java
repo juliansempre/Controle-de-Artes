@@ -1,5 +1,6 @@
 package com.aerocopias.controledeartes.producaoaroeira.controller;
 
+import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
 import com.aerocopias.controledeartes.autentificacao.login.controller.SessãoController;
 import com.aerocopias.controledeartes.autentificacao.login.model.LoginModel;
 import com.aerocopias.controledeartes.model.ConectaDB;
@@ -478,6 +479,11 @@ public class ProducaoAroeiraController implements Initializable {
         //Refresh
         mainContainer.getChildren().clear();
         listarTarefasFromDatabase();
+    }
+
+    public void btnConfigProducao(ActionEvent actionEvent) throws IOException {
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        configModel.config();
     }
 
 

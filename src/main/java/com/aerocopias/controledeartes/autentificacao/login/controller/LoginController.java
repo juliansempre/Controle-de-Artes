@@ -1,6 +1,7 @@
 package com.aerocopias.controledeartes.autentificacao.login.controller;
 
 
+import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
 import com.aerocopias.controledeartes.autentificacao.cadastro.model.CadastroUsuarioModel;
 import com.aerocopias.controledeartes.autentificacao.login.model.LoginModel;
 import com.aerocopias.controledeartes.controller.HelloController;
@@ -122,17 +123,9 @@ public class LoginController {
         stage.close();
     }
 
-    public void btnConfiguracoesLogin(ActionEvent actionEvent) {
-        // Código da ação a ser executada quando o item de menu 1 for selecionado
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Configurações");
-        alert.setHeaderText(null);
-        alert.setContentText(
-                "Banco de dados: 192.168.0.206:3306"
-                        +"\nDatabase: controledeartes"
-                        +"\nMysql \nVersão 1.0.2");
-
-        alert.showAndWait();
+    public void btnConfiguracoesLogin(ActionEvent actionEvent) throws IOException {
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        configModel.config();
     }
 
     public void btnSobreLogin(ActionEvent actionEvent) {
