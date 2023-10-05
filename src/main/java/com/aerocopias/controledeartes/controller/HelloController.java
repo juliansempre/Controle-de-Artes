@@ -1,5 +1,6 @@
 package com.aerocopias.controledeartes.controller;
 
+import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
 import com.aerocopias.controledeartes.autentificacao.login.controller.SessãoController;
 import com.aerocopias.controledeartes.autentificacao.login.model.LoginModel;
 import com.aerocopias.controledeartes.painel.model.PainelModel;
@@ -1223,7 +1224,7 @@ public void listarProntos() {
 //        stage.close();
     }
 
-    public void MenuBarConf(ActionEvent actionEvent) {
+    public void MenuBarConf(ActionEvent actionEvent) throws IOException {
         // Código da ação a ser executada quando o item de menu 1 for selecionado
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Configurações");
@@ -1234,6 +1235,9 @@ public void listarProntos() {
                 +"\nMysql \nVersão 1.0");
 
         alert.showAndWait();
+
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        configModel.config();
     }
     //Buscar por data
     public void btnBuscarData(ActionEvent actionEvent) {

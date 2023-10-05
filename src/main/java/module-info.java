@@ -27,6 +27,11 @@ module com.aerocopias {
     exports com.aerocopias.controledeartes.producaoaroeira.controller;
     opens com.aerocopias.controledeartes.producaoaroeira.model;
     exports com.aerocopias.controledeartes.producaoaroeira.model;
+    opens com.aerocopias.controledeartes.adm.configuracao.model to javafx.fxml;
+    exports com.aerocopias.controledeartes.adm.configuracao.model;
+    opens com.aerocopias.controledeartes.adm.configuracao.controller;
+    exports com.aerocopias.controledeartes.adm.configuracao.controller;
+
 
 
 }
