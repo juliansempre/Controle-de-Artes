@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConfigModel {
@@ -69,7 +70,31 @@ public class ConfigModel {
         }
     }
 
+    public String listarDadosDiretorio() throws SQLException {
+        Connection connection = ConectaDB.getConnection();
+        String query = "SELECT linkdiretorio FROM explorar WHERE id = 1";
+        String linkDiretorio = null;
 
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                linkDiretorio = resultSet.getString("linkdiretorio");
+                System.out.println(linkDiretorio);
+                setLinkdiretorio(linkDiretorio);
+            } else {
+                System.out.println("Nenhum registro encontrado com ID igual a 1.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar dados do diretório: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            ConectaDB.closeConnection(connection);
+        }
+
+        return linkDiretorio;
+    }
     //Operação tela
     public void config() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/aerocopias/controledeartes/config-view.fxml"));

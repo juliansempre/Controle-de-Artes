@@ -35,7 +35,17 @@ public class ConfigController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        txtAtualDiretorio.setText("DIdidididi");
+        //Iniciar com o nome atual do diretorio
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        //configModel.inserirDadosDiretorio("teste", "Linkteste");
+        try {
+            configModel.listarDadosDiretorio();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String nome = configModel.getLinkdiretorio();
+        txtAtualDiretorio.setText(nome);
     }
     @FXML
     private void voltarParaPrincipal(ActionEvent event) throws IOException {
@@ -43,8 +53,8 @@ public class ConfigController implements Initializable {
     }
 
     public void btnSalvarDiretorio(ActionEvent actionEvent) throws SQLException {
-        ConfigModel configModel = new ConfigModel(mainContainer);
-        configModel.inserirDadosDiretorio("teste", "Linkteste");
+
+        txtAtualDiretorio.setText("Ai ze da manga");
     }
 
     public void btnAtualizarDiretorio(ActionEvent actionEvent) {
