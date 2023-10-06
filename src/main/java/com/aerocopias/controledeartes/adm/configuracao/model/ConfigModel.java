@@ -69,6 +69,45 @@ public class ConfigModel {
             ConectaDB.closeConnection(connection);
         }
     }
+    public void atualizarDadosDiretorioPadrao(String nomediretorio, String linkdiretorio) throws SQLException {
+        Connection connection = ConectaDB.getConnection();
+        String query = "UPDATE explorar SET nomediretorio = ?, linkdiretorio = ? WHERE id = 1";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setString(1, nomediretorio);
+            statement.setString(2, linkdiretorio);
+
+            statement.executeUpdate();
+            System.out.println("Diretório atualizado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Diretório atualizado com sucesso!");
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar dados na classe ProducaoAroeiraModel: " + e.getMessage());
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar Diretório: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConectaDB.closeConnection(connection);
+        }
+    }
+
+    public void resetarDadosDiretorio() throws SQLException {
+        Connection connection = ConectaDB.getConnection();
+        String query = "UPDATE controledeartes.explorar SET nomediretorio = 'Diretório padrão', linkdiretorio = 'C:\\Arte' WHERE id = 1";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+            System.out.println("Diretório resetado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Diretório resetado com sucesso!");
+        } catch (SQLException e) {
+            System.out.println("Erro ao resetar dados na classe ProducaoAroeiraModel: " + e.getMessage());
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao resetar Diretório: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConectaDB.closeConnection(connection);
+        }
+    }
 
     public String listarDadosDiretorio() throws SQLException {
         Connection connection = ConectaDB.getConnection();

@@ -1,18 +1,45 @@
 package com.aerocopias.controledeartes.model;
+import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
+import javafx.scene.layout.BorderPane;
+
 import java.awt.*;
         import java.awt.event.KeyEvent;
         import java.io.File;
         import java.io.IOException;
+import java.sql.SQLException;
 
 public class AbrirDiretorioModel {
+    public String directoryPath;
+    private static BorderPane mainContainer;
+
+    public String getDirectoryPath() {
+        return directoryPath;
+    }
+
+    public void setDirectoryPath(String directoryPath) {
+        this.directoryPath = directoryPath;
+    }
+
     public static void main(String[] args) {
         buscardiretorio(45);
     }
 
     public static void buscardiretorio(int id) {
+        //Iniciar com o nome atual do diretorio
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        //configModel.inserirDadosDiretorio("teste", "Linkteste");
+        try {
+            configModel.listarDadosDiretorio();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String nome = configModel.getLinkdiretorio();
+        //Inicio do codigo de busca
+
         String numeroString = "" + id;
 
-        String directoryPath = "Z:\\Aero Copias - Aroeira\\2023\\Arte";
+        String directoryPath = nome;
         String searchString = numeroString;
 
         try {

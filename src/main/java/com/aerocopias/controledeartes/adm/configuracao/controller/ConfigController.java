@@ -1,6 +1,8 @@
 package com.aerocopias.controledeartes.adm.configuracao.controller;
 
 import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
+import com.aerocopias.controledeartes.controller.HelloController;
+import com.aerocopias.controledeartes.painel.model.PainelModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -35,6 +38,10 @@ public class ConfigController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    //Iniciar com o nome atual do diretorio
+        exibirDiretorioAtual();
+    }
+    public void exibirDiretorioAtual(){
         //Iniciar com o nome atual do diretorio
         ConfigModel configModel = new ConfigModel(mainContainer);
         //configModel.inserirDadosDiretorio("teste", "Linkteste");
@@ -54,11 +61,21 @@ public class ConfigController implements Initializable {
 
     public void btnSalvarDiretorio(ActionEvent actionEvent) throws SQLException {
 
-        txtAtualDiretorio.setText("Ai ze da manga");
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        configModel.resetarDadosDiretorio();
+        exibirDiretorioAtual();
     }
 
-    public void btnAtualizarDiretorio(ActionEvent actionEvent) {
-    }
+    public void btnAtualizarDiretorio(ActionEvent actionEvent) throws SQLException {
+        ConfigModel configModel = new ConfigModel(mainContainer);
+        String diretorio = txtDiretorio.getText();
+        if(diretorio.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha o campo!");
+        }else {
+            configModel.atualizarDadosDiretorioPadrao("Diretorio Atualizado", diretorio);
+            exibirDiretorioAtual();
+        }
 
+    }
 
 }
