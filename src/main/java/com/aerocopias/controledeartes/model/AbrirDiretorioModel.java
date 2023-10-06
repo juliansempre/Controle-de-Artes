@@ -20,11 +20,11 @@ public class AbrirDiretorioModel {
         this.directoryPath = directoryPath;
     }
 
-    public static void main(String[] args) {
-        buscardiretorio(45);
-    }
+//    public static void main(String[] args) {
+//        buscardiretorio(45);
+//    }
 
-    public static void buscardiretorio(int id) {
+    public void buscardiretorio(int id) {
         //Iniciar com o nome atual do diretorio
         ConfigModel configModel = new ConfigModel(mainContainer);
         //configModel.inserirDadosDiretorio("teste", "Linkteste");

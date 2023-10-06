@@ -3,6 +3,7 @@ package com.aerocopias.controledeartes.controller;
 import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
 import com.aerocopias.controledeartes.autentificacao.login.controller.SessãoController;
 import com.aerocopias.controledeartes.autentificacao.login.model.LoginModel;
+import com.aerocopias.controledeartes.model.AbrirDiretorioModel;
 import com.aerocopias.controledeartes.painel.model.PainelModel;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -284,6 +285,17 @@ public class HelloController implements Initializable {
             });
             container.add(buttonpf, col + 10, row);
 
+            // Adicionar o botão "abrir" com evento de ação
+            Button buttonAbr = new Button("Abrir");
+            buttonAbr.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
+
+            buttonAbr.setOnAction(event -> {
+                AbrirDiretorioModel abrirDiretorioModel = new AbrirDiretorioModel();
+                String idAtual = (String) buttonAbr.getUserData();
+                abrirDiretorioModel.buscardiretorio(Integer.parseInt(idAtual));
+            });
+            container.add(buttonAbr, col + 11, row);
+
             // Adicionar o botão "editar" com evento de ação
             Button button = new Button("Editar");
             button.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
@@ -520,6 +532,16 @@ public class HelloController implements Initializable {
             });
             container.add(buttonpf, col + 10, row);
 
+            // Adicionar o botão "abrir" com evento de ação
+            Button buttonAbr = new Button("Abrir");
+            buttonAbr.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
+
+            buttonAbr.setOnAction(event -> {
+                AbrirDiretorioModel abrirDiretorioModel = new AbrirDiretorioModel();
+                String idAtual = (String) buttonAbr.getUserData();
+                abrirDiretorioModel.buscardiretorio(Integer.parseInt(idAtual));
+            });
+            container.add(buttonAbr, col + 11, row);
 
             Button button2 = new Button("Deletar");
             button2.setUserData(a[0]);
@@ -695,6 +717,16 @@ public class HelloController implements Initializable {
             });
             container.add(buttonpf, col + 10, row);
 
+            // Adicionar o botão "abrir" com evento de ação
+            Button buttonAbr = new Button("Abrir");
+            buttonAbr.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
+
+            buttonAbr.setOnAction(event -> {
+                AbrirDiretorioModel abrirDiretorioModel = new AbrirDiretorioModel();
+                String idAtual = (String) buttonAbr.getUserData();
+                abrirDiretorioModel.buscardiretorio(Integer.parseInt(idAtual));
+            });
+            container.add(buttonAbr, col + 11, row);
 
             Button button2 = new Button("Deletar");
             button2.setUserData(a[0]);
@@ -868,6 +900,16 @@ public void listarProntos() {
         });
         container.add(buttonpf, col + 10, row);
 
+        // Adicionar o botão "abrir" com evento de ação
+        Button buttonAbr = new Button("Abrir");
+        buttonAbr.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
+
+        buttonAbr.setOnAction(event -> {
+            AbrirDiretorioModel abrirDiretorioModel = new AbrirDiretorioModel();
+            String idAtual = (String) buttonAbr.getUserData();
+            abrirDiretorioModel.buscardiretorio(Integer.parseInt(idAtual));
+        });
+        container.add(buttonAbr, col + 11, row);
 
         Button button2 = new Button("Deletar");
         button2.setUserData(a[0]);
@@ -1042,6 +1084,16 @@ public void listarProntos() {
             });
             container.add(buttonpf, col + 10, row);
 
+            // Adicionar o botão "abrir" com evento de ação
+            Button buttonAbr = new Button("Abrir");
+            buttonAbr.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
+
+            buttonAbr.setOnAction(event -> {
+                AbrirDiretorioModel abrirDiretorioModel = new AbrirDiretorioModel();
+                String idAtual = (String) buttonAbr.getUserData();
+                abrirDiretorioModel.buscardiretorio(Integer.parseInt(idAtual));
+            });
+            container.add(buttonAbr, col + 11, row);
 
             Button button2 = new Button("Deletar");
             button2.setUserData(a[0]);
@@ -1381,6 +1433,16 @@ public void listarProntos() {
             });
             container.add(buttonpf, col + 10, row);
 
+            // Adicionar o botão "abrir" com evento de ação
+            Button buttonAbr = new Button("Abrir");
+            buttonAbr.setUserData(a[0]); // Armazenar o ID na propriedade userData do botão
+
+            buttonAbr.setOnAction(event -> {
+                AbrirDiretorioModel abrirDiretorioModel = new AbrirDiretorioModel();
+                String idAtual = (String) buttonAbr.getUserData();
+                abrirDiretorioModel.buscardiretorio(Integer.parseInt(idAtual));
+            });
+            container.add(buttonAbr, col + 11, row);
 
             Button button2 = new Button("Deletar");
             button2.setUserData(a[0]);
