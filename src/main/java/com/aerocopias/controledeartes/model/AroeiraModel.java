@@ -84,6 +84,22 @@ public class AroeiraModel {
             ConectaDB.closeConnection(connection);
         }
     }
+    public static void delseismeses() throws SQLException {
+        Connection connection = ConectaDB.getConnection();
+        String query = "DELETE FROM artesaroeira WHERE data < DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            int rowsDeleted = statement.executeUpdate();
+            System.out.println(rowsDeleted + " registros deletados com mais de 6 meses.");
+            JOptionPane.showMessageDialog(null, rowsDeleted + " registros deletados com mais de 6 meses.");
+        } catch (SQLException e) {
+            System.out.println("Erro ao deletar dados: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao deletar dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            ConectaDB.closeConnection(connection);
+        }
+    }
 
     public static void AbrirWebLink(String url) {
         try {

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" fillWidth="false" minHeight="800.0" minWidth="900.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aerocopias.controledeartes.controller.HelloController">
+<VBox alignment="CENTER" fillWidth="false" minHeight="800.0" minWidth="900.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aerocopias.controledeartes.controller.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -80,15 +81,23 @@
          <TextField fx:id="txtArte" layoutX="14.0" layoutY="30.0" />
          <TextField fx:id="txtLink" layoutX="173.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0" />
          <TextField fx:id="txtData" layoutX="324.0" layoutY="30.0" />
-         <TextField fx:id="txtStatus" layoutX="483.0" layoutY="30.0" />
+         <TextField fx:id="txtStatus" editable="false" layoutX="483.0" layoutY="30.0" style="-fx-background-color: E6E6E6;" />
          <Button layoutX="638.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnSalvarClick" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
          <Label layoutX="20.0" layoutY="6.0" text="Arte" />
          <Label layoutX="173.0" layoutY="6.0" text="Link do email" />
          <Label layoutX="324.0" layoutY="6.0" text="Data" />
          <Label layoutX="483.0" layoutY="6.0" text="Status" />
          <Button layoutX="638.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnAtualizarClick" prefHeight="25.0" prefWidth="80.0" text="Atualizar" />
-         <TextField fx:id="txtId" editable="false" layoutX="561.0" layoutY="62.0" prefHeight="25.0" prefWidth="71.0" />
+         <TextField fx:id="txtId" editable="false" layoutX="561.0" layoutY="62.0" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: E6E6E6;" />
          <Label layoutX="486.0" layoutY="66.0" text="Código" />
+         <MenuButton id="statusEscolha" layoutX="521.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0">
+           <items>
+             <MenuItem mnemonicParsing="false" onAction="#dropParaFazer" text="Para fazer" />
+             <MenuItem mnemonicParsing="false" onAction="#dropAlteracao" text="Alteração" />
+               <MenuItem mnemonicParsing="false" onAction="#dropPronto" text="Pronto" />
+               <MenuItem mnemonicParsing="false" onAction="#dropAprovado" text="Aprovado" />
+           </items>
+         </MenuButton>
       </children>
  </AnchorPane>
 

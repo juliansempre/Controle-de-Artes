@@ -1,0 +1,51 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\Aerocopias-Designer\Desktop\java2\controledeartes105.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\Aerocopias-Designer\Desktop\java2\.
+Requires JDK:	Yes
+Requires 64-Bit: Yes
+Java min ver:	1.017.000_000
+Java max ver:	1.021.000_002
+Substitute:	JAVA_HOME = 
+Substitute:	PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python312\Scripts\;C:\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\Julian\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\xampp\php;C:\composer;C:\Program Files\Docker\Docker\resources\bin;;C:\PROGRA~1\TIEDUC~1\TI-83P~1\UTILS;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Aerocopias-Designer\AppData\Local\Microsoft\WindowsApps;;C:\Users\Aerocopias-Designer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Aerocopias-Designer\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.2.4\bin;;C:\Users\Aerocopias-Designer\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Java\jre-1.8\bin
+JRE paths:	;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python312\Scripts\;C:\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\Julian\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\xampp\php;C:\composer;C:\Program Files\Docker\Docker\resources\bin;;C:\PROGRA~1\TIEDUC~1\TI-83P~1\UTILS;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Aerocopias-Designer\AppData\Local\Microsoft\WindowsApps;;C:\Users\Aerocopias-Designer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Aerocopias-Designer\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.2.4\bin;;C:\Users\Aerocopias-Designer\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Java\jre-1.8\bin
+Check launcher:	C:\Program Files\Common Files\Oracle\Java\javapath\bin\javaw.exe (not found)
+Check launcher:	C:\Python312\Scripts\bin\javaw.exe (not found)
+Check launcher:	C:\Python312\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\system32\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\Wbem\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\WindowsPowerShell\v1.0\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\OpenSSH\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\MySQL\MySQL Server 8.0\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Julian\AppData\Local\Programs\Microsoft VS Code\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\nodejs\bin\javaw.exe (not found)
+Check launcher:	C:\ProgramData\chocolatey\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Git\cmd\bin\javaw.exe (not found)
+Check launcher:	C:\xampp\php\bin\javaw.exe (not found)
+Check launcher:	C:\composer\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Docker\Docker\resources\bin\javaw.exe (not found)
+Check launcher:	C:\PROGRA~1\TIEDUC~1\TI-83P~1\UTILS\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\MySQL\MySQL Shell 8.0\bin\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Aerocopias-Designer\AppData\Local\Microsoft\WindowsApps\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Aerocopias-Designer\AppData\Local\Programs\Microsoft VS Code\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Aerocopias-Designer\AppData\Roaming\npm\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.2.4\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Aerocopias-Designer\AppData\Roaming\Composer\vendor\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Java\jre-1.8\bin\javaw.exe (OK)
+Check javac:	C:\Program Files\Java\jre-1.8\bin\javac.exe (not found)
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Check:		SOFTWARE\JavaSoft\JDK\21.0.2
+Version string: 1.021.000_002 / 64-Bit (OK)
+Check launcher:	C:\Program Files\Java\jdk-21\bin\javaw.exe (OK)
+Check javac:	C:\Program Files\Java\jdk-21\bin\javac.exe (OK)
+Match:		1.021.000_002
+Runtime used:	1.021.000_002 (64-bit)
+Launcher:	C:\Program Files\Java\jdk-21\bin\javaw.exe
+Launcher args:	-jar "C:\Users\Aerocopias-Designer\Desktop\java2\controledeartes105.exe"
+Args length:	72/32768 chars
+Exit code:	0

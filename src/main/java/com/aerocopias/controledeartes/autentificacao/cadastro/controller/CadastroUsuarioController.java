@@ -69,7 +69,7 @@ public class CadastroUsuarioController {
         alert.setContentText(
                 "Banco de dados: 192.168.0.206:3306"
                         +"\nDatabase: controledeartes"
-                        +"\nMysql \nVersão 1.0.2");
+                        +"\nMysql \nVersão 1.0.5");
 
         alert.showAndWait();
     }

@@ -1,5 +1,6 @@
 package com.aerocopias.controledeartes.controller;
 
+import com.aerocopias.controledeartes.adm.configuracao.controller.ConfigController;
 import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
 import com.aerocopias.controledeartes.autentificacao.login.controller.SessãoController;
 import com.aerocopias.controledeartes.autentificacao.login.model.LoginModel;
@@ -412,7 +413,7 @@ public class HelloController implements Initializable {
 
         try {
             Connection connection = ConectaDB.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE id = ? ORDER BY id DESC LIMIT 30");
             statement.setString(1, id);
             ResultSet resultSet = statement.executeQuery();
 
@@ -579,7 +580,7 @@ public class HelloController implements Initializable {
 
         try {
             Connection connection = ConectaDB.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE status = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE status = ? ORDER BY id DESC LIMIT 30");
             statement.setString(1, "ALTERAÇÃO");
             ResultSet resultSet = statement.executeQuery();
 
@@ -600,30 +601,30 @@ public class HelloController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        if (listaArtesaroeira.isEmpty()) {
+            Label noChangesLabel = new Label("Sem nenhuma alteração hoje");
+            container.add(noChangesLabel, 0, 0); // Adiciona a mensagem ao container
+        } else {
         int row = 0;
         int col = 0;
         for (String[] a : listaArtesaroeira) {
-            Label label1 = new Label( " ( "+ a[0] + " ) ");
+            Label label1 = new Label(" ( " + a[0] + " ) ");
             Label label2 = new Label(a[1]);
             Label label3 = new Label(a[2]);
             Label label4 = new Label(a[3]);
             Label label5 = new Label(a[4]);
 
             //Mudar de cor
-            if(a[4].equalsIgnoreCase("Para fazer")){
+            if (a[4].equalsIgnoreCase("Para fazer")) {
                 label5.setTextFill(javafx.scene.paint.Color.BLUE);
                 label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-            }
-            else if(a[4].equalsIgnoreCase("Alteração")){
+            } else if (a[4].equalsIgnoreCase("Alteração")) {
                 label5.setTextFill(javafx.scene.paint.Color.RED);
                 label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-            }
-            else if(a[4].equalsIgnoreCase("Pronto")){
+            } else if (a[4].equalsIgnoreCase("Pronto")) {
                 label5.setTextFill(javafx.scene.paint.Color.GREEN);
                 label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-            }
-            else if(a[4].equalsIgnoreCase("Aprovado")){
+            } else if (a[4].equalsIgnoreCase("Aprovado")) {
                 label5.setTextFill(javafx.scene.paint.Color.DARKBLUE);
                 label5.setFont(Font.font("Arial", FontWeight.BOLD, 14));
             }
@@ -671,7 +672,7 @@ public class HelloController implements Initializable {
                 String linkAtual = a[2];
                 String dataAtual = a[3];
 
-                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"alteração");
+                enviarAtualizarComParams(idAtual, arteAtual, linkAtual, dataAtual, "alteração");
             });
             container.add(buttonAlt, col + 7, row);
 
@@ -685,7 +686,7 @@ public class HelloController implements Initializable {
                 String linkAtual = a[2];
                 String dataAtual = a[3];
 
-                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"APROVADO");
+                enviarAtualizarComParams(idAtual, arteAtual, linkAtual, dataAtual, "APROVADO");
             });
             container.add(buttonAp, col + 8, row);
 
@@ -699,7 +700,7 @@ public class HelloController implements Initializable {
                 String linkAtual = a[2];
                 String dataAtual = a[3];
 
-                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PRONTO");
+                enviarAtualizarComParams(idAtual, arteAtual, linkAtual, dataAtual, "PRONTO");
             });
             container.add(buttonPr, col + 9, row);
 
@@ -713,7 +714,7 @@ public class HelloController implements Initializable {
                 String linkAtual = a[2];
                 String dataAtual = a[3];
 
-                enviarAtualizarComParams(idAtual,arteAtual,linkAtual,dataAtual,"PARA FAZER");
+                enviarAtualizarComParams(idAtual, arteAtual, linkAtual, dataAtual, "PARA FAZER");
             });
             container.add(buttonpf, col + 10, row);
 
@@ -752,7 +753,8 @@ public class HelloController implements Initializable {
                 row++;
             } else {
                 col += 7;
-            }
+               }
+          }
         }
     }
 // select where pronto
@@ -761,7 +763,7 @@ public void listarProntos() {
 
     try {
         Connection connection = ConectaDB.getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE status = ?");
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE status = ? ORDER BY id DESC LIMIT 30");
         statement.setString(1, "PRONTO");
         ResultSet resultSet = statement.executeQuery();
 
@@ -945,7 +947,7 @@ public void listarProntos() {
 
         try {
             Connection connection = ConectaDB.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE status = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE status = ? ORDER BY id DESC LIMIT 30");
             statement.setString(1, "APROVADO");
             ResultSet resultSet = statement.executeQuery();
 
@@ -1277,6 +1279,8 @@ public void listarProntos() {
     }
 
     public void MenuBarConf(ActionEvent actionEvent) throws IOException {
+
+        
         // Código da ação a ser executada quando o item de menu 1 for selecionado
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Configurações");
@@ -1284,7 +1288,7 @@ public void listarProntos() {
         alert.setContentText(
                 "Banco de dados: 192.168.0.206:3306"
                 +"\nDatabase: controledeartes"
-                +"\nMysql \nVersão 1.0");
+                +"\nMysql \nVersão 1.0.5");
 
         alert.showAndWait();
 
@@ -1312,7 +1316,7 @@ public void listarProntos() {
 
         try {
             Connection connection = ConectaDB.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE data = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM artesaroeira WHERE data = ? ORDER BY id DESC LIMIT 30");
             statement.setString(1, datando);
             ResultSet resultSet = statement.executeQuery();
 
@@ -1477,6 +1481,23 @@ public void listarProntos() {
         PainelModel painelModel = new PainelModel(mainContainer);
         painelModel.painel();
 
+    }
+
+    public void dropParaFazer(ActionEvent actionEvent) {
+        //JOptionPane.showMessageDialog(null, "Funcionando pra fazer" );
+        txtStatus.setText("PARA FAZER");
+    }
+
+    public void dropAlteracao(ActionEvent actionEvent) {
+        txtStatus.setText("ALTERAÇÃO");
+    }
+
+    public void dropPronto(ActionEvent actionEvent) {
+        txtStatus.setText("PRONTO");
+    }
+
+    public void dropAprovado(ActionEvent actionEvent) {
+        txtStatus.setText("APROVADO");
     }
 }
 

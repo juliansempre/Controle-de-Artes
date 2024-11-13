@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>D:\Backup Julian\Projetos\javaDesktop\Controle-de-Artes-programa1.0.4\Controle-de-Artes-programa1.0.5\out\artifacts\controledeartes105_jar2\controledeartes.jar</jar>
+  <outfile>C:\Users\Aerocopias-Designer\Desktop\java2\controledeartes105.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>D:\Backup Julian\Projetos\javaDesktop\Controle-de-Artes-programa1.0.4\Controle-de-Artes-programa1.0.5\out\artifacts\controledeartes105_jar2\icone.ico</icon>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>true</requiresJdk>
+    <requires64Bit>true</requires64Bit>
+    <minVersion>17.0.0</minVersion>
+    <maxVersion>21.0.2</maxVersion>
+  </jre>
+</launch4jConfig>

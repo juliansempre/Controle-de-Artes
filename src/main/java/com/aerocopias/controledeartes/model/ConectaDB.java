@@ -39,4 +39,15 @@ public class ConectaDB {
         connection.close();
         System.out.println("Conexão fechada!");
     }
+    //Metodo para verificar a conexão ativa ou não
+    public static boolean isConnected(Connection connection) {
+        try {
+            if (connection != null && connection.isValid(2)) {  // Timeout de 2 segundos para verificar a conexão
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar a conexão: " + e.getMessage());
+        }
+        return false;
+    }
 }

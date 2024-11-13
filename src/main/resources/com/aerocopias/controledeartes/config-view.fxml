@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aerocopias.controledeartes.adm.configuracao.controller.ConfigController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aerocopias.controledeartes.adm.configuracao.controller.ConfigController">
    <MenuBar layoutX="8.0" layoutY="5.0" prefHeight="25.0" prefWidth="585.0" />
 
     <BorderPane fx:id="mainContainer">
@@ -29,6 +29,7 @@
        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
      </columnConstraints>
      <rowConstraints>
+         <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="51.0" valignment="CENTER" vgrow="SOMETIMES" />
        <RowConstraints maxHeight="106.0" minHeight="0.0" prefHeight="51.0" valignment="CENTER" vgrow="SOMETIMES" />
        <RowConstraints maxHeight="231.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
          <RowConstraints maxHeight="231.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
@@ -38,7 +39,7 @@
        <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="573.0">
+         <HBox alignment="CENTER" prefHeight="62.0" prefWidth="573.0" GridPane.rowIndex="1">
             <children>
                 <Label text="Configurações">
                   <font>
@@ -47,7 +48,7 @@
                </Label>
             </children>
          </HBox>
-         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
             <children>
                <Label prefHeight="17.0" prefWidth="560.0" text="Crie e Insira do caminho diretório: Arte | Exemplo: C:\Arte" />
                <Label text="O programa será responsável pela pesquisa dos diretórios" />
@@ -55,7 +56,7 @@
                <Label text="e o programa será responsável pela pesquisa: Exemplo: 125" />
             </children>
          </VBox>
-         <HBox prefHeight="47.0" prefWidth="573.0" GridPane.rowIndex="4">
+         <HBox prefHeight="47.0" prefWidth="573.0" GridPane.rowIndex="5">
             <children>
                <TextField fx:id="txtDiretorio" prefHeight="25.0" prefWidth="327.0" />
                <Button mnemonicParsing="false" onAction="#btnSalvarDiretorio" text="Resetar diretório">
@@ -70,18 +71,23 @@
                </Button>
             </children>
          </HBox>
-         <TextArea editable="false" minHeight="78.0" prefHeight="78.0" prefWidth="573.0" text="Banco de dados: 192.168.0.206:3306&#10;Database: controledeartes&#10;Mysql Versão 1.0" GridPane.rowIndex="5" />
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <TextArea editable="false" minHeight="78.0" prefHeight="78.0" prefWidth="573.0" text="Banco de dados: 192.168.0.206:3306&#10;Database: controledeartes&#10;Mysql Versão 1.0.5" GridPane.rowIndex="6" />
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
             <children>
                <Label text="Diretório atual: " />
                <TextField fx:id="txtAtualDiretorio" editable="false" prefHeight="25.0" prefWidth="448.0" style="-fx-background-color: rgb(240,240,240); -fx-border-color: rgb(210,210,210);" />
             </children>
          </HBox>
-         <HBox maxHeight="20.0" minHeight="10.0" GridPane.rowIndex="3">
+         <HBox maxHeight="20.0" minHeight="10.0" GridPane.rowIndex="4">
             <children>
                <Label text="Inserir diretório:" />
             </children>
          </HBox>
+         <Label fx:id="statusconnectlabel" alignment="TOP_RIGHT" contentDisplay="RIGHT" nodeOrientation="LEFT_TO_RIGHT" text="Status" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <GridPane.margin>
+               <Insets right="10.0" />
+            </GridPane.margin>
+         </Label>
       </children>
    </GridPane>
 </AnchorPane>

@@ -1,26 +1,23 @@
 package com.aerocopias.controledeartes.adm.configuracao.controller;
 
 import com.aerocopias.controledeartes.adm.configuracao.model.ConfigModel;
-import com.aerocopias.controledeartes.controller.HelloController;
-import com.aerocopias.controledeartes.painel.model.PainelModel;
+import com.aerocopias.controledeartes.model.ConectaDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ConfigController implements Initializable {
+    public Label statusconnectlabel;
     @FXML
     private Label textoTela;
 
@@ -38,6 +35,8 @@ public class ConfigController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        verificarConexao(statusconnectlabel);
     //Iniciar com o nome atual do diretorio
         exibirDiretorioAtual();
     }
@@ -60,9 +59,32 @@ public class ConfigController implements Initializable {
     }
 
     public void btnSalvarDiretorio(ActionEvent actionEvent) throws SQLException {
+        //Resetar diretório
 
-        ConfigModel configModel = new ConfigModel(mainContainer);
-        configModel.resetarDadosDiretorio();
+        int resposta = JOptionPane.showConfirmDialog(
+                null, // Onde a janela será exibida (null para centralizar na tela)
+                "Você gostaria de resetar o diretório?", // Mensagem da caixa de diálogo
+                "Confirmação", // Título da janela
+                JOptionPane.YES_NO_OPTION // Tipo de opções (YES_NO_OPTION: Sim e Não)
+        );
+
+        // Verifica a resposta
+        if (resposta == JOptionPane.YES_OPTION) {
+            System.out.println("Você escolheu SIM.");
+
+            ConfigModel configModel = new ConfigModel(mainContainer);
+            configModel.resetarDadosDiretorio();
+
+        } else if (resposta == JOptionPane.NO_OPTION) {
+            System.out.println("Você escolheu NÃO.");
+            exibirDiretorioAtual();
+        } else {
+            System.out.println("A janela foi fechada sem uma escolha.");
+            exibirDiretorioAtual();
+        }
+
+
+
         exibirDiretorioAtual();
     }
 
@@ -72,10 +94,47 @@ public class ConfigController implements Initializable {
         if(diretorio.isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha o campo!");
         }else {
-            configModel.atualizarDadosDiretorioPadrao("Diretorio Atualizado", diretorio);
-            exibirDiretorioAtual();
+            int resposta = JOptionPane.showConfirmDialog(
+                    null, // Onde a janela será exibida (null para centralizar na tela)
+                    "Deseja atualizar o diretório?", // Mensagem da caixa de diálogo
+                    "Confirmação", // Título da janela
+                    JOptionPane.YES_NO_OPTION // Tipo de opções (YES_NO_OPTION: Sim e Não)
+            );
+
+            // Verifica a resposta
+            if (resposta == JOptionPane.YES_OPTION) {
+                System.out.println("Você escolheu SIM.");
+
+                configModel.atualizarDadosDiretorioPadrao("Diretorio Atualizado", diretorio);
+                exibirDiretorioAtual();
+
+            } else if (resposta == JOptionPane.NO_OPTION) {
+                System.out.println("Você escolheu NÃO.");
+                exibirDiretorioAtual();
+            } else {
+                System.out.println("A janela foi fechada sem uma escolha.");
+                exibirDiretorioAtual();
+            }
+
+
         }
 
     }
+public static ConfigController verificarConexao(Label statusconnectlabel){
+
+    Connection connection = ConectaDB.getConnection();
+
+    // Verifica se a conexão está ativa
+    if (ConectaDB.isConnected(connection)) {
+
+        statusconnectlabel.setText("CONECTADO");
+    } else {
+
+        statusconnectlabel.setText("DESCONECTADO");
+    }
+    //JOptionPane.showMessageDialog(null, statusconect);
+    return null;
+}
+
 
 }
