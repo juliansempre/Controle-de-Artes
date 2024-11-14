@@ -1,0 +1,1 @@
+out/artifacts/artifacts.rar filter=lfs diff=lfs merge=lfs -text
