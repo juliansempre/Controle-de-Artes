@@ -1,15 +1,14 @@
 [Setup]
 AppName=Meu Instalador
-AppVersion=1.0.3
-DefaultDirName={pf}\Controledeartes
+AppVersion=1.0.5
+DefaultDirName=C:\Controledeartes
 DisableDirPage=no
 
 [Files]
-Source: "C:\Projetos\javaDesktop\Controle-de-Artes-programa1.0.3\Controle-de-Artes-programa1.0.3\out\artifacts\Controle_de_Artes_programa1_0_3_jar\ControledeArtes.exe";  DestDir: "{app}"
+Source: "C:\projetos\Java-desktop\Controle-de-Artes-programa1.0.5\Controle-de-Artes-programa1.0.5\out\artifacts\controledeartes105_jar2\controledeartes105.exe"; DestDir: "{app}"
 
 [Icons]
 Name: "{commondesktop}\Controle de artes"; Filename: "{app}\ControledeArtes.exe"; WorkingDir: "{app}"
 
 [Run]
 Filename: "{app}\ControledeArtes.exe"; Flags: postinstall shellexec
-
