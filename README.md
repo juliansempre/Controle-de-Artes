@@ -14,7 +14,7 @@ Cria a senha de root = toor
 Retire a senha de root:
 ALTER USER 'root'@'localhost' IDENTIFIED BY '';
 Baixe o arquivo *.sql da pasta library e insira do mysql:
-[cmd]->(mysql>) source C:\Users\Meu Computador\Desktop\controledeartes.sql
+[cmd]->(mysql) source C:\Users\Meu Computador\Desktop\controledeartes.sql
 
 ///////////////////////////////////////////
 //////     MYSQL EM REDE LOCAL   //////////
