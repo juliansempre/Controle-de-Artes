@@ -19,10 +19,21 @@ source C:\Users\Meu Computador\Desktop\controledeartes.sql
 ///////////////////////////////////////////
 //////     MYSQL EM REDE LOCAL   //////////
 ///////////////////////////////////////////
-[my.cnf]
+[my.cnf] ou [my.ini]
 bind-address = 0.0.0.0
 
 CREATE USER 'root'@'192.168.0.206' IDENTIFIED BY '';
 GRANT ALL PRIVILEGES ON controledeartes.* TO 'root'@'192.168.0.206';
 FLUSH PRIVILEGES;
+-------------------------------------------
+adicionar um usuario permitido:
+
+CREATE USER 'root'@'192.168.0.205' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON controledeartes.* TO 'root'@'192.168.0.205';
+---------------------------------------------
+Desativar segurança:
+[my.ini]
+
+skip-grant-tables
+
 </pre>
