@@ -19,6 +19,9 @@ Baixe o arquivo *.sql da pasta library e insira do mysql:
 ///////////////////////////////////////////
 //////     MYSQL EM REDE LOCAL   //////////
 ///////////////////////////////////////////
+Mostrar o datadir: 
+select @@datadir;
+C:\ProgramData\MySQL\MySQL Server 8.0\my.ini
 [my.cnf] ou [my.ini]
 bind-address = 0.0.0.0
 
