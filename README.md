@@ -9,7 +9,7 @@ Instalação:
 =======================
 
 Servidor:
-Instala o mysql server
+Instale o mysql server
 Cria a senha de root = toor
 <sub>Atenção: Originalmente o mysql do projeto não possui senha ou seja root com "senha em branco".
 Devido a atualizações do mysql a senha root deverá ser trocada no ConectaDB.java java por "toor".</sub>
