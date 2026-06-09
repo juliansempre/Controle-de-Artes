@@ -7,6 +7,7 @@ Sistema Desktop Java: Controle de artes para Gráfica rápida / JavaFX e JDBC
 =======================
 Instalação:
 =======================
+Instale o jdk-21.0.2_windows-x64_bin
 
 Servidor:
 Instale o mysql server
