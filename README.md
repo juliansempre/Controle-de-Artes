@@ -8,7 +8,8 @@ Sistema Desktop Java: Controle de artes para Gráfica rápida / JavaFX e JDBC
 Instalação:
 =======================
 Instale o jdk-21.0.2_windows-x64_bin
-
+Instale o mysql-installer-web-community-8.0.46.0.msi
+  
 Servidor:
 Instale o mysql server
 Cria a senha de root = toor
